@@ -1,0 +1,72 @@
+﻿@model IndexViewModel
+
+<div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="registerlabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form asp-controller="Auth" asp-action="Register" runat="server">
+                <div class="modal-body">
+                    <div class="container color-bg">
+                        <div class="row">
+                            <div class="col pt-5">
+                                <h3 class="text-center color-text">Sign Up</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="col p-5">
+                                <div class="row">
+                                    <div class="col form-group">
+                                        <label asp-for="RegisterUserDataModel.Username" class="text-center color-text"></label>
+                                        <input asp-for="RegisterUserDataModel.Username" class="form-control" type="text" placeholder="Username" required>
+                                        <span asp-validation-for="RegisterUserDataModel.Username" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col form-group">
+                                        <label asp-for="RegisterUserDataModel.FirstName" class="text-center color-text"></label>
+                                        <input asp-for="RegisterUserDataModel.FirstName" class="form-control" type="text" placeholder="First name" required>
+                                        <span asp-validation-for="RegisterUserDataModel.FirstName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col form-group">
+                                        <label asp-for="RegisterUserDataModel.LastName" class="text-center color-text"></label>
+                                        <input asp-for="RegisterUserDataModel.LastName" class="form-control" type="text" placeholder="Last name" required>
+                                        <span asp-validation-for="RegisterUserDataModel.LastName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col form-group">
+                                        <label asp-for="RegisterUserDataModel.Departure" class="text-center color-text"></label>
+                                        <input asp-for="RegisterUserDataModel.Departure" class="form-control" type="text" placeholder="Departure" required>
+                                        <span asp-validation-for="RegisterUserDataModel.Departure" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col form-group">
+                                        <label asp-for="RegisterUserDataModel.Password" class="text-center color-text"></label>
+                                        <input asp-for="RegisterUserDataModel.Password" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" title="The password has to be at least 5 characters with at least 1 Upper Case character, 1 lower case character and 1 Number!" class="form-control" placeholder="Password" required>
+                                        <span asp-validation-for="RegisterUserDataModel.Password" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col form-group">
+                                        <label asp-for="RegisterUserDataModel.ConfirmPassword" class="text-center color-text"></label>
+                                        <input asp-for="RegisterUserDataModel.ConfirmPassword" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" title="The password has to be at least 5 characters with at least 1 Upper Case character, 1 lower case character and 1 Number!" class="form-control" placeholder="Confirm Password" required>
+                                        <span asp-validation-for="RegisterUserDataModel.ConfirmPassword" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#login">
+                        Have Account ?
+                    </button>
+                    <button type="submit" asp-controller="Auth" asp-action="Register" class="btn btn-primary btn-lg btn-block">Create Account</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

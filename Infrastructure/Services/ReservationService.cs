@@ -21,17 +21,17 @@ namespace Infrastructure.Services
         /// <summary> Adds new reservation. </summary>
         public async Task Add(Reservation reservation)
         {
-            await _reservationRepo.Add(reservation);
+            await _reservationRepo.AddAsync(reservation);
         }
 
         /// <summary> Deletes already existing reservation. </summary>
         public async Task Delete(Guid id)
         {
-            var reservation = await _reservationRepo.Get(id);
+            var reservation = await _reservationRepo.GetAsync(id);
 
             if (reservation != null)
             {
-                await _reservationRepo.Delete(reservation);
+                await _reservationRepo.DeleteAsync(reservation);
             }
         }
 

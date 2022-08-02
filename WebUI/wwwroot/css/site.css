@@ -69,3 +69,12 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+
+
+.color-bg {
+  background-color: #14213D;
+}
+.color-text {
+  color:#FCA311;
+}

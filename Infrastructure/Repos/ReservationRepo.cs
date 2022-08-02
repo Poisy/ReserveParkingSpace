@@ -15,14 +15,14 @@ namespace Infrastructure.Repos
             _db = dbContext;
         }
 
-        public async Task Add(Reservation reservation)
+        public async Task AddAsync(Reservation reservation)
         {
             await _db.Reservations.AddAsync(reservation);
             
             await _db.SaveChangesAsync();
         }
 
-        public async Task<Reservation> Get(Guid id)
+        public async Task<Reservation> GetAsync(Guid id)
         {
             return await _db.Reservations.FirstOrDefaultAsync(reservation => reservation.Id == id);
         }
@@ -32,7 +32,7 @@ namespace Infrastructure.Repos
             return _db.Reservations;
         }
 
-        public async Task Delete(Reservation reservation)
+        public async Task DeleteAsync(Reservation reservation)
         {
             _db.Remove(reservation);
 

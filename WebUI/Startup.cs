@@ -41,7 +41,9 @@ namespace WebUI
             });
             
             services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AuthDbContext>();
-            
+
+            services.AddScoped<UsersRepo>();
+            services.AddScoped<UserService>();
             services.AddScoped<ReservationRepo>();
             services.AddScoped<ReservationService>();
         }

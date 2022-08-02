@@ -1,0 +1,44 @@
+﻿@model IndexViewModel
+
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="loginlabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form asp-controller="Auth" asp-action="Login">
+                <div class="modal-body">
+                    <div class="container color-bg">
+                        <div class="row">
+                            <div class="col pt-5">
+                                <h3 class="text-center color-text">Sign In</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="col p-5">
+                                <div class="row">
+                                    <div class="col form-group">
+                                        <label asp-for="LoginUserDataModel.Username" class="text-center color-text" for="">Username</label>
+                                        <input asp-for="LoginUserDataModel.Username" class="form-control" type="text" placeholder="Username" required>
+                                        <span asp-validation-for="LoginUserDataModel.Username" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col form-group">
+                                        <label asp-for="LoginUserDataModel.Password" class="text-center color-text"></label>
+                                        <input asp-for="LoginUserDataModel.Password" type="password" class="form-control" placeholder="Password" required>
+                                        <span asp-validation-for="LoginUserDataModel.Password" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#register">
+                        Don't Have Account ?
+                    </button>
+                    <button type="submit" asp-controller="Auth" asp-action="Login" class="btn btn-primary btn-lg btn-block">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -15,14 +15,14 @@ namespace Infrastructure.Repos
             _db = dbContext;
         }
 
-        public async Task Add(User user)
+        public async Task AddAsync(User user)
         {
             await _db.Users.AddAsync(user);
             
             await _db.SaveChangesAsync();
         }
 
-        public async Task<User> Get(Guid id)
+        public async Task<User> GetAsync(Guid id)
         {
             return await _db.Users.FirstOrDefaultAsync(user => user.Id == id);
         }
@@ -30,13 +30,6 @@ namespace Infrastructure.Repos
         public IQueryable<User> GetAll()
         {
             return _db.Users;
-        }
-
-        public async Task<bool> Exists(string username)
-        {
-            var user = await _db.Users.FirstOrDefaultAsync(user => user.Username == username);
-
-            return user != null;
         }
     }
 }
