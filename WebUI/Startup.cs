@@ -8,6 +8,7 @@ using Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,8 +32,15 @@ namespace WebUI
 
             services.AddDbContextPool<ParkingDbContext>(opts => 
             {
-                opts.UseSqlServer(Configuration["ConnectionString"]);
+                opts.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+            
+            services.AddDbContextPool<AuthDbContext>(opts => 
+            {
+                opts.UseSqlServer(Configuration.GetConnectionString("AuthConnection"));
+            });
+            
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AuthDbContext>();
             
             services.AddScoped<ReservationRepo>();
             services.AddScoped<ReservationService>();
@@ -57,6 +65,7 @@ namespace WebUI
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
