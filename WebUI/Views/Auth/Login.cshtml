@@ -1,0 +1,36 @@
+@model LoginViewModel
+
+<form asp-controller="Auth" asp-action="Login">
+    <div class="container color-bg rounded">
+        <div class="row">
+            <div class="col pt-5">
+                <h3 class="text-center color-text">Sign In</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col p-5">
+                <div class="row text-danger" asp-validation-summary="ModelOnly"></div>
+                <div class="row">
+                    <div class="col form-group">
+                        <label asp-for="Username" class="text-center color-text" for="">Username</label>
+                        <input asp-for="Username" class="form-control" type="text" placeholder="Username" required>
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col form-group">
+                        <label asp-for="Password" class="text-center color-text"></label>
+                        <input asp-for="Password" type="password" class="form-control" placeholder="Password" required>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target="#register">
+            Don't Have Account ?
+        </button>
+        <button type="submit" asp-controller="Auth" asp-action="Login" class="btn btn-primary btn-lg btn-block">Login</button>
+    </div>
+</form>

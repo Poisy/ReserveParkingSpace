@@ -18,12 +18,8 @@
             </button>
             @if (!User.Identity.IsAuthenticated)
             {
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#register">
-                    SignUp
-                </button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login">
-                    SignIn
-                </button>
+                <a asp-controller="Auth" asp-action="Register" class="btn btn-primary">SignUp</a>
+                <a asp-controller="Auth" asp-action="Login" class="btn btn-primary">SignIn</a>
             }
             else
             {
@@ -45,12 +41,6 @@
 
 <div class="container">
     <main role="main" class="pb-3">
-        
-        @if (!User.Identity.IsAuthenticated)
-        {
-            <partial name="/Views/Auth/_RegisterPartial.cshtml"/>
-            <partial name="/Views/Auth/_LoginPartial.cshtml"/>
-        }
         @RenderBody()
     </main>
 </div>

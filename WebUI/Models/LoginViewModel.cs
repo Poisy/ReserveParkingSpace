@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Infrastructure.DataModels
+namespace WebUI.Models
 {
-    public class LoginUserDataModel
+    public class LoginViewModel
     {
         [Required]
         public string Username { get; set; }

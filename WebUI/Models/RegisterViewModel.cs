@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using Domain.Entities;
 
-namespace Infrastructure.DataModels
+namespace WebUI.Models
 {
-    public class RegisterUserDataModel : User
+    public class RegisterViewModel : User
     {
         [Required]
         [DataType(DataType.Password)]

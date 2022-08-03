@@ -6,7 +6,6 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Domain.Entities;
 using Infrastructure;
-using Infrastructure.DataModels;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -26,18 +25,9 @@ namespace WebUI.Controllers
             _userManager = userManager;
         }
 
-        public async  Task<IActionResult> Index(IndexViewModel model)
+        public IActionResult Index()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                var identityUser = await _userManager.FindByNameAsync(User.Identity.Name);
-                var user = await _userService.Get(new Guid(identityUser.Id));
-
-                model.User = user;
-            }
-            
-            
-            return View("/Views/Home/Index.cshtml", model);
+            return View();
         }
 
         public IActionResult Privacy()
