@@ -1,4 +1,4 @@
-﻿@model IndexViewModel
+﻿@model MainViewModel
 
 @{
     ViewData["Title"] = "Home Page";
@@ -7,10 +7,10 @@
 @if (User.Identity.IsAuthenticated)
 {
     <div class="text-center">
-        <h1>@Model.User.Id.ToString()</h1>
-        <h1>@Model.User.Username</h1>
-        <h1>@Model.User.FirstName</h1>
-        <h1>@Model.User.LastName</h1>
-        <h1>@Model.User.Departure</h1>
+        <h1>@Model.Id.ToString()</h1>
+        <h1>@Model.Username</h1>
+        <h1>@Model.FirstName</h1>
+        <h1>@Model.LastName</h1>
+        <h1>@Model.Departure</h1>
     </div>
 }
