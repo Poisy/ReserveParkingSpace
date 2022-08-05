@@ -56,7 +56,7 @@ namespace WebUI.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, false);
-                    await _userService.Add(model);
+                    await _userService.AddAsync(model);
 
                     return RedirectToAction("Index", "Home");
                 }

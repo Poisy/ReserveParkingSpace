@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using Domain.Entities;
 using FoolProof.Core;
 using Microsoft.AspNetCore.Http;
 using WebUI.Validation;
@@ -35,5 +36,35 @@ namespace WebUI.Models
 
 
         public DateTime MaxReservationDate => From.AddDays(7);
+
+
+        public Reservation Model(Guid userId)
+        {
+            var model = new Reservation
+            {
+                Id = Guid.NewGuid(),
+                Space = Space,
+                By = userId,
+                Shift = Shift
+            };
+
+            switch (Shift)
+            {
+                case 1:
+                    model.From = From.AddHours(8);
+                    model.To = To.AddHours(14);
+                    break;
+                case 2:
+                    model.From = From.AddHours(14);
+                    model.To = To.AddHours(21);
+                    break;
+                case 3:
+                    model.From = From.AddHours(9).AddMinutes(30);
+                    model.To = To.AddHours(18).AddMinutes(30);
+                    break;
+            }
+
+            return model;
+        }
     }
 }

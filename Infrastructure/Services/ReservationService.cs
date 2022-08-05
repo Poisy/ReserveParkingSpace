@@ -19,8 +19,10 @@ namespace Infrastructure.Services
             _reservationRepo = reservationRepo;
         }
         
-        /// <summary> Adds new reservation. </summary>
-        public async Task Add(Reservation reservation)
+        /// <summary> Tries to add new reservation. </summary>
+        /// <exception cref="Domain.Exceptions.UserAlreadyReservedException"> If the current user already have reservation. </exception>
+        /// <exception cref="Domain.Exceptions.SpaceAlreadyTakenException"> If the space is already been taken by other user. </exception>
+        public async Task TryAddAsync(Reservation reservation)
         {
             // Gets only the current reservations and removes the outdated
             var reservations = _reservationRepo.GetAll().Where(res => res.To >= DateTime.Today);
@@ -73,7 +75,7 @@ namespace Infrastructure.Services
         }
 
         /// <summary> Deletes already existing reservation. </summary>
-        public async Task Delete(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
             var reservation = await _reservationRepo.GetAsync(id);
 
@@ -95,14 +97,21 @@ namespace Infrastructure.Services
         /// <summary> Returns all reservations that were from the given date. </summary>
         public IEnumerable<Reservation> GetReservationsByDate(DateTime dateTime)
         {
-            var reservations = _reservationRepo.GetAll()
-                .Where(reservation => reservation.From < dateTime && reservation.To > dateTime);
+            var reservations = _reservationRepo.GetAll().AsEnumerable()
+                .Where(reservation =>
+                {
+                    var date = new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
+                    var from = new DateTime(reservation.From.Year, reservation.From.Month, reservation.From.Day);
+                    var to = new DateTime(reservation.To.Year, reservation.To.Month, reservation.To.Day);
+
+                    return from <= date && to >= date;
+                });
 
             return reservations;
         }
 
         /// <summary> Returns all reservations that were from the given user and are reserved for now. </summary>
-        public async Task<Reservation> GetCurrentReservationByUser(Guid userId)
+        public async Task<Reservation> GetCurrentReservationByUserAsync(Guid userId)
         {
             var reservation = await _reservationRepo.GetAll()
                 .FirstOrDefaultAsync(reservation => reservation.By == userId && reservation.From < DateTime.Now && reservation.To > DateTime.Now);
@@ -118,7 +127,5 @@ namespace Infrastructure.Services
 
             return reservations;
         }
-        
-        
     }
 }
