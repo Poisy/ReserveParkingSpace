@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entities;
+using Domain.Exceptions;
 using Infrastructure.Repos;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +22,53 @@ namespace Infrastructure.Services
         /// <summary> Adds new reservation. </summary>
         public async Task Add(Reservation reservation)
         {
+            // Gets only the current reservations and removes the outdated
+            var reservations = _reservationRepo.GetAll().Where(res => res.To >= DateTime.Today);
+                    
+            // Check if the user already have any reservation, if so he is unable to make a second one,
+            // only one reservation at time is possible
+            if (reservations.Any(res => res.By == reservation.By))
+            {
+                throw new UserAlreadyReservedException();
+            }
+            
+            // Only get the reservations for that space
+            reservations = reservations.Where(res => res.Space == reservation.Space);
+
+            switch (reservation.Shift)
+            {
+                case 3:
+                    // Check if the date range conflicts with other reservation
+                    if (!reservations.All(res => (res.To < reservation.From) || (res.From > reservation.To)))
+                    {
+                        throw new SpaceAlreadyTakenException();
+                    }
+
+                    break;
+                case 2:
+                    // Gets all reservations where shift is 2 or 3
+                    reservations = reservations.Where(res => res.Shift != 1);
+                        
+                    // Check if the date range conflicts with other reservation
+                    if (!reservations.All(res => (res.To < reservation.From) || (res.From > reservation.To)))
+                    {
+                        throw new SpaceAlreadyTakenException();
+                    }
+
+                    break;
+                case 1:
+                    // Gets all reservations where shift is 1 or 3
+                    reservations = reservations.Where(res => res.Shift != 2);
+                        
+                    // Check if the date range conflicts with other reservation
+                    if (!reservations.All(res => (res.To < reservation.From) || (res.From > reservation.To)))
+                    {
+                        throw new SpaceAlreadyTakenException();
+                    }
+
+                    break;
+            }
+
             await _reservationRepo.AddAsync(reservation);
         }
 
@@ -70,5 +118,7 @@ namespace Infrastructure.Services
 
             return reservations;
         }
+        
+        
     }
 }

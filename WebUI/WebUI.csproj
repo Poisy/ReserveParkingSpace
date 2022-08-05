@@ -10,6 +10,8 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="FoolProof.Core" Version="1.1.10" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.26" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.17">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -20,6 +22,26 @@
     <ItemGroup>
       <_ContentIncludedByDefault Remove="Views\Auth\_LoginPartial.cshtml" />
       <_ContentIncludedByDefault Remove="Views\Auth\_RegisterPartial.cshtml" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap4-toggle-3.6.1\.gitignore" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap4-toggle-3.6.1\bower.json" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap4-toggle-3.6.1\CHANGELOG.md" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap4-toggle-3.6.1\CNAME" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap4-toggle-3.6.1\css\bootstrap4-toggle.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap4-toggle-3.6.1\css\bootstrap4-toggle.min.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap4-toggle-3.6.1\doc\bootstrap4-toggle-demo.gif" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap4-toggle-3.6.1\doc\header.png" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap4-toggle-3.6.1\doc\script.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap4-toggle-3.6.1\doc\stylesheet.css" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap4-toggle-3.6.1\Gruntfile.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap4-toggle-3.6.1\index.html" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap4-toggle-3.6.1\js\bootstrap4-toggle.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap4-toggle-3.6.1\js\bootstrap4-toggle.min.js" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap4-toggle-3.6.1\js\bootstrap4-toggle.min.js.map" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap4-toggle-3.6.1\LICENSE" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap4-toggle-3.6.1\package-lock.json" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap4-toggle-3.6.1\package.json" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap4-toggle-3.6.1\README.md" />
+      <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap4-toggle-3.6.1\test\test-all-sizes.html" />
     </ItemGroup>
 
 </Project>
