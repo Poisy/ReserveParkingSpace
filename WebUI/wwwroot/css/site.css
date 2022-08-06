@@ -78,3 +78,34 @@ body {
 .color-text {
   color:#FCA311;
 }
+
+
+.parking-lot-first-line {
+  border-right: 6px solid #000000;
+  border-left: 6px solid #000000;
+  border-bottom: 6px solid #000000;
+  padding: 7px 3px;
+}
+
+.parking-lot-second-line {
+  border-right: 6px solid #000000;
+  border-left: 6px solid #000000;
+  border-top: 6px solid #000000;
+  padding: 7px 3px;
+}
+
+.car-img {
+  width: 62px;
+  height: 124px;
+  cursor: pointer;
+}
+
+.free-space-img {
+  width: 62px;
+  height: 62px;
+  cursor: pointer;
+}
+
+hr {
+  background-color: #FCA311;
+}

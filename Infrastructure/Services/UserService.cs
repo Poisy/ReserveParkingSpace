@@ -15,16 +15,14 @@ namespace Infrastructure.Services
             _usersRepo = usersRepo;
         }
 
-        public async Task Add(User user)
+        public async Task AddAsync(User user)
         {
             await _usersRepo.AddAsync(user);
         }
 
-        public async Task<User> Get(Guid id)
+        public async Task<User> GetAsync(Guid id)
         {
-            var user = await _usersRepo.GetAsync(id);
-
-            return user;
+            return await _usersRepo.GetAsync(id);
         }
     }
 }

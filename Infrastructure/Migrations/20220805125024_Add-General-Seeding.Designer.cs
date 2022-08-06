@@ -4,14 +4,16 @@ using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ParkingDbContext))]
-    partial class ParkingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220805125024_Add-General-Seeding")]
+    partial class AddGeneralSeeding
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,453 +49,453 @@ namespace Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("cebcc7e2-a6fa-4d3a-b72e-a79e1750809f"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750149"),
-                            From = new DateTime(2022, 8, 5, 9, 30, 0, 0, DateTimeKind.Local),
-                            Shift = 3,
-                            Space = 10,
-                            To = new DateTime(2022, 8, 14, 18, 30, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = new Guid("d6567c3b-ae27-4350-adac-f8884cb90b9e"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750126"),
-                            From = new DateTime(2022, 8, 15, 8, 0, 0, 0, DateTimeKind.Local),
+                            Id = new Guid("0e02bf96-cefb-489a-b6ec-bbe24ad83bb5"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750123"),
+                            From = new DateTime(2022, 8, 11, 0, 0, 0, 0, DateTimeKind.Local),
                             Shift = 1,
-                            Space = 5,
-                            To = new DateTime(2022, 8, 16, 14, 0, 0, 0, DateTimeKind.Local)
+                            Space = 13,
+                            To = new DateTime(2022, 8, 13, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("b91b1cc5-2f56-4282-8fd3-f7e484db6ade"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750125"),
-                            From = new DateTime(2022, 9, 3, 14, 0, 0, 0, DateTimeKind.Local),
+                            Id = new Guid("fe96babd-40e5-495c-9833-b3c3bb90375a"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750120"),
+                            From = new DateTime(2022, 8, 9, 0, 0, 0, 0, DateTimeKind.Local),
                             Shift = 2,
-                            Space = 4,
-                            To = new DateTime(2022, 9, 4, 21, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = new Guid("14daabb0-21af-45e4-b509-cd0293879973"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750131"),
-                            From = new DateTime(2022, 8, 10, 8, 0, 0, 0, DateTimeKind.Local),
-                            Shift = 1,
-                            Space = 9,
-                            To = new DateTime(2022, 8, 24, 14, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = new Guid("76538311-1bc7-41e8-a685-ca3759ba0f11"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750129"),
-                            From = new DateTime(2022, 8, 12, 9, 30, 0, 0, DateTimeKind.Local),
-                            Shift = 3,
-                            Space = 4,
-                            To = new DateTime(2022, 8, 27, 18, 30, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = new Guid("881c7d73-dc5e-465a-93ff-8b40f4c77b1b"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750146"),
-                            From = new DateTime(2022, 8, 11, 9, 30, 0, 0, DateTimeKind.Local),
-                            Shift = 3,
-                            Space = 19,
-                            To = new DateTime(2022, 8, 28, 18, 30, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = new Guid("6cdd96de-a5f5-4f01-af55-3dbfd3a15f0e"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750116"),
-                            From = new DateTime(2022, 8, 29, 8, 0, 0, 0, DateTimeKind.Local),
-                            Shift = 1,
-                            Space = 15,
-                            To = new DateTime(2022, 8, 31, 14, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = new Guid("478ecf71-7153-4ea5-8f94-7b12a1c99822"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750136"),
-                            From = new DateTime(2022, 8, 13, 9, 30, 0, 0, DateTimeKind.Local),
-                            Shift = 3,
-                            Space = 11,
-                            To = new DateTime(2022, 8, 14, 18, 30, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = new Guid("246572ed-3daf-423f-8bc9-a7c3c7a213bf"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750134"),
-                            From = new DateTime(2022, 8, 20, 9, 30, 0, 0, DateTimeKind.Local),
-                            Shift = 3,
                             Space = 12,
-                            To = new DateTime(2022, 8, 30, 18, 30, 0, 0, DateTimeKind.Local)
+                            To = new DateTime(2022, 8, 22, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("c469f538-f298-4f42-b7de-c1b256b88f08"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750112"),
-                            From = new DateTime(2022, 8, 5, 14, 0, 0, 0, DateTimeKind.Local),
-                            Shift = 2,
-                            Space = 3,
-                            To = new DateTime(2022, 8, 22, 21, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = new Guid("34591429-f740-4029-b723-fd005f1e7378"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750130"),
-                            From = new DateTime(2022, 8, 14, 14, 0, 0, 0, DateTimeKind.Local),
-                            Shift = 2,
+                            Id = new Guid("f94c4cc6-050b-4033-8f51-7cd3db6c87f7"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750107"),
+                            From = new DateTime(2022, 9, 2, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 1,
                             Space = 1,
-                            To = new DateTime(2022, 8, 28, 21, 0, 0, 0, DateTimeKind.Local)
+                            To = new DateTime(2022, 9, 3, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("faba589e-1941-45f0-a782-a76e65149cff"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750100"),
-                            From = new DateTime(2022, 8, 20, 14, 0, 0, 0, DateTimeKind.Local),
+                            Id = new Guid("f18cce82-95f9-4eb2-a906-f6c596e9ca9e"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750134"),
+                            From = new DateTime(2022, 8, 21, 0, 0, 0, 0, DateTimeKind.Local),
                             Shift = 2,
                             Space = 6,
-                            To = new DateTime(2022, 8, 27, 21, 0, 0, 0, DateTimeKind.Local)
+                            To = new DateTime(2022, 8, 29, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("5a94b015-d371-4b44-84d6-ddf56a3df620"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750120"),
-                            From = new DateTime(2022, 8, 11, 8, 0, 0, 0, DateTimeKind.Local),
+                            Id = new Guid("7037f92d-8032-4da5-872c-7b96fb851ab6"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750127"),
+                            From = new DateTime(2022, 8, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 2,
+                            Space = 19,
+                            To = new DateTime(2022, 9, 2, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("433dfacb-5ecc-4d25-88a1-0706ee32fa27"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750119"),
+                            From = new DateTime(2022, 8, 6, 0, 0, 0, 0, DateTimeKind.Local),
                             Shift = 1,
-                            Space = 16,
-                            To = new DateTime(2022, 8, 25, 14, 0, 0, 0, DateTimeKind.Local)
+                            Space = 9,
+                            To = new DateTime(2022, 8, 15, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("38feea54-122d-469a-b944-b0c47a4da2c5"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750139"),
-                            From = new DateTime(2022, 8, 23, 8, 0, 0, 0, DateTimeKind.Local),
-                            Shift = 1,
-                            Space = 5,
-                            To = new DateTime(2022, 8, 26, 14, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = new Guid("50748ff2-acb7-4eb7-9b24-a68fe58c163e"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750148"),
-                            From = new DateTime(2022, 8, 11, 14, 0, 0, 0, DateTimeKind.Local),
+                            Id = new Guid("081c27e3-d9cb-451b-b514-8c3f512fb195"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750129"),
+                            From = new DateTime(2022, 8, 18, 0, 0, 0, 0, DateTimeKind.Local),
                             Shift = 2,
                             Space = 8,
-                            To = new DateTime(2022, 8, 28, 21, 0, 0, 0, DateTimeKind.Local)
+                            To = new DateTime(2022, 8, 21, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("0339c423-8cb2-4a05-aec5-bb7f9007a39b"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750109"),
-                            From = new DateTime(2022, 8, 15, 9, 30, 0, 0, DateTimeKind.Local),
+                            Id = new Guid("7e24e3fe-fd1e-44fc-86e9-7ba82c3e9e7c"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750114"),
+                            From = new DateTime(2022, 8, 7, 0, 0, 0, 0, DateTimeKind.Local),
                             Shift = 3,
-                            Space = 7,
-                            To = new DateTime(2022, 8, 22, 18, 30, 0, 0, DateTimeKind.Local)
+                            Space = 10,
+                            To = new DateTime(2022, 8, 30, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("a9ba6baa-0592-4e31-8430-8c55bff55f84"),
+                            Id = new Guid("b850aa6c-f1b8-4fce-b070-770b3a9ae089"),
                             By = new Guid("4c33537b-e856-463b-811e-e8e059750101"),
-                            From = new DateTime(2022, 8, 31, 9, 30, 0, 0, DateTimeKind.Local),
+                            From = new DateTime(2022, 8, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 1,
+                            Space = 12,
+                            To = new DateTime(2022, 8, 23, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("7d00dc53-bc23-407e-8521-e2839e391d2b"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750109"),
+                            From = new DateTime(2022, 8, 10, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 2,
+                            Space = 16,
+                            To = new DateTime(2022, 8, 14, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("641d4b01-0954-4c19-9fa0-c6194ab218e6"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750108"),
+                            From = new DateTime(2022, 8, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             Shift = 3,
                             Space = 3,
-                            To = new DateTime(2022, 9, 1, 18, 30, 0, 0, DateTimeKind.Local)
+                            To = new DateTime(2022, 8, 22, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("c2735411-fa33-4be1-b644-53852fd0a6f3"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750108"),
-                            From = new DateTime(2022, 8, 8, 8, 0, 0, 0, DateTimeKind.Local),
+                            Id = new Guid("a9c56b44-13b5-406e-8671-7dee35b5b022"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750111"),
+                            From = new DateTime(2022, 8, 18, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 2,
+                            Space = 20,
+                            To = new DateTime(2022, 8, 23, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("668c8cbb-252d-45cc-a45d-87751d075782"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750143"),
+                            From = new DateTime(2022, 8, 5, 0, 0, 0, 0, DateTimeKind.Local),
                             Shift = 1,
-                            Space = 16,
-                            To = new DateTime(2022, 8, 10, 14, 0, 0, 0, DateTimeKind.Local)
+                            Space = 15,
+                            To = new DateTime(2022, 8, 14, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("3de56a22-b238-4bbb-a340-83bbf6f5e783"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750104"),
-                            From = new DateTime(2022, 8, 20, 14, 0, 0, 0, DateTimeKind.Local),
+                            Id = new Guid("0624fc3a-0d96-4e2a-86a2-a899a91121b2"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750117"),
+                            From = new DateTime(2022, 8, 7, 0, 0, 0, 0, DateTimeKind.Local),
                             Shift = 2,
                             Space = 15,
-                            To = new DateTime(2022, 9, 2, 21, 0, 0, 0, DateTimeKind.Local)
+                            To = new DateTime(2022, 8, 19, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("95161946-6e32-4abc-a534-b08877abc59a"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750141"),
-                            From = new DateTime(2022, 8, 19, 9, 30, 0, 0, DateTimeKind.Local),
+                            Id = new Guid("52fb5e08-9a0d-413a-83fa-98eb82d9f68d"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750149"),
+                            From = new DateTime(2022, 8, 25, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 3,
+                            Space = 17,
+                            To = new DateTime(2022, 8, 31, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("2cd312b6-fab5-44dc-acdc-712b45c24b02"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750110"),
+                            From = new DateTime(2022, 8, 22, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 1,
+                            Space = 16,
+                            To = new DateTime(2022, 8, 27, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("86939f7a-abd8-48e3-b57d-650a6fcf51ac"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750125"),
+                            From = new DateTime(2022, 8, 27, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 1,
+                            Space = 6,
+                            To = new DateTime(2022, 8, 28, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("62d0d91a-7456-40df-8f5f-16016e764348"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750147"),
+                            From = new DateTime(2022, 8, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 2,
+                            Space = 1,
+                            To = new DateTime(2022, 8, 17, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("8b98dc6b-c4cd-4e58-b97f-d6a6c2cbb4f7"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750105"),
+                            From = new DateTime(2022, 8, 10, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 3,
+                            Space = 18,
+                            To = new DateTime(2022, 8, 28, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("a94f3495-8696-400a-81c3-3c7a1d4c5fb3"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750118"),
+                            From = new DateTime(2022, 8, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 2,
+                            Space = 9,
+                            To = new DateTime(2022, 8, 26, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("5803f4c9-84cd-411e-a052-72c4fde616a1"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750103"),
+                            From = new DateTime(2022, 8, 30, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 3,
+                            Space = 5,
+                            To = new DateTime(2022, 9, 3, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("15ea7fca-ae70-4ba5-b1b1-366ad71750d2"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750140"),
+                            From = new DateTime(2022, 8, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             Shift = 3,
                             Space = 2,
-                            To = new DateTime(2022, 9, 4, 18, 30, 0, 0, DateTimeKind.Local)
+                            To = new DateTime(2022, 8, 19, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("9df7fc53-793d-4465-866c-2d8f387e2639"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750133"),
-                            From = new DateTime(2022, 8, 6, 8, 0, 0, 0, DateTimeKind.Local),
-                            Shift = 1,
-                            Space = 9,
-                            To = new DateTime(2022, 8, 9, 14, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = new Guid("47b75a41-0684-48e4-8eda-25f45f0c9c13"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750124"),
-                            From = new DateTime(2022, 8, 15, 8, 0, 0, 0, DateTimeKind.Local),
-                            Shift = 1,
-                            Space = 10,
-                            To = new DateTime(2022, 8, 19, 14, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = new Guid("563abce9-e29d-4f1b-a356-92b42c1ba389"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750144"),
-                            From = new DateTime(2022, 8, 29, 9, 30, 0, 0, DateTimeKind.Local),
+                            Id = new Guid("67d908df-f45b-4835-89e7-caeb4659d3a4"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750130"),
+                            From = new DateTime(2022, 8, 14, 0, 0, 0, 0, DateTimeKind.Local),
                             Shift = 3,
-                            Space = 17,
-                            To = new DateTime(2022, 9, 3, 18, 30, 0, 0, DateTimeKind.Local)
+                            Space = 7,
+                            To = new DateTime(2022, 9, 2, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("77d1989f-5722-42ca-b4d1-ab781b9c5fc7"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750115"),
-                            From = new DateTime(2022, 8, 24, 8, 0, 0, 0, DateTimeKind.Local),
+                            Id = new Guid("f17a04b9-799d-4727-a8b4-e3b93ac5c906"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750112"),
+                            From = new DateTime(2022, 8, 27, 0, 0, 0, 0, DateTimeKind.Local),
                             Shift = 1,
-                            Space = 17,
-                            To = new DateTime(2022, 8, 25, 14, 0, 0, 0, DateTimeKind.Local)
+                            Space = 3,
+                            To = new DateTime(2022, 8, 28, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("7fa95862-7a87-4ef8-8c7d-628e7ccc678b"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750123"),
-                            From = new DateTime(2022, 8, 24, 14, 0, 0, 0, DateTimeKind.Local),
+                            Id = new Guid("bf7c19da-7bc5-4c91-87b4-ab8a286b0b9f"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750124"),
+                            From = new DateTime(2022, 8, 21, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 3,
+                            Space = 1,
+                            To = new DateTime(2022, 8, 29, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("d066996a-7b69-4c01-837e-17810f310d37"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750116"),
+                            From = new DateTime(2022, 8, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             Shift = 2,
                             Space = 11,
-                            To = new DateTime(2022, 9, 4, 21, 0, 0, 0, DateTimeKind.Local)
+                            To = new DateTime(2022, 8, 21, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("f2d8b4f4-92e8-42dc-856e-092c74b0b66c"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750128"),
-                            From = new DateTime(2022, 8, 11, 14, 0, 0, 0, DateTimeKind.Local),
-                            Shift = 2,
-                            Space = 18,
-                            To = new DateTime(2022, 8, 17, 21, 0, 0, 0, DateTimeKind.Local)
+                            Id = new Guid("42afde00-0d7b-4a4a-867b-64b63e45fa6b"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750136"),
+                            From = new DateTime(2022, 8, 26, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 3,
+                            Space = 2,
+                            To = new DateTime(2022, 8, 28, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("0a8412f5-6347-449b-a001-eeeed845c528"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750140"),
-                            From = new DateTime(2022, 8, 23, 14, 0, 0, 0, DateTimeKind.Local),
-                            Shift = 2,
-                            Space = 17,
-                            To = new DateTime(2022, 8, 24, 21, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = new Guid("d2bbaf29-9f09-4ac6-ac26-ecd939baa27a"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750119"),
-                            From = new DateTime(2022, 8, 7, 8, 0, 0, 0, DateTimeKind.Local),
+                            Id = new Guid("8cee9c31-fc33-4b1e-b5c8-5867ca342bc9"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750126"),
+                            From = new DateTime(2022, 8, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             Shift = 1,
-                            Space = 1,
-                            To = new DateTime(2022, 8, 31, 14, 0, 0, 0, DateTimeKind.Local)
+                            Space = 14,
+                            To = new DateTime(2022, 8, 15, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("79693a45-ce1b-4ef7-8c8f-772769e345a6"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750106"),
-                            From = new DateTime(2022, 8, 7, 9, 30, 0, 0, DateTimeKind.Local),
+                            Id = new Guid("ba8a454f-6296-4bf8-94dd-77d33beaac0f"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750135"),
+                            From = new DateTime(2022, 8, 6, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 2,
+                            Space = 4,
+                            To = new DateTime(2022, 8, 19, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("76219002-37b4-455a-b1ec-64fc5fc76471"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750133"),
+                            From = new DateTime(2022, 8, 23, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 2,
+                            Space = 4,
+                            To = new DateTime(2022, 9, 3, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("f3e5eebd-8516-47ca-ba5c-9ffa0c112e65"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750102"),
+                            From = new DateTime(2022, 8, 29, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 3,
+                            Space = 14,
+                            To = new DateTime(2022, 8, 30, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("318fc089-aaa9-499f-9cb9-032763e4bfbd"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750132"),
+                            From = new DateTime(2022, 8, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 3,
+                            Space = 16,
+                            To = new DateTime(2022, 8, 19, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("34a491cf-ab2a-4bed-8e29-d4a603ca7678"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750131"),
+                            From = new DateTime(2022, 8, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 1,
+                            Space = 20,
+                            To = new DateTime(2022, 8, 22, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("bc80c451-c41f-4c54-a255-bddb0b5cedc1"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750100"),
+                            From = new DateTime(2022, 8, 27, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 2,
+                            Space = 13,
+                            To = new DateTime(2022, 9, 1, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("5270d631-b791-4fb2-8f46-fd34fef92f25"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750137"),
+                            From = new DateTime(2022, 8, 31, 0, 0, 0, 0, DateTimeKind.Local),
                             Shift = 3,
                             Space = 12,
-                            To = new DateTime(2022, 8, 15, 18, 30, 0, 0, DateTimeKind.Local)
+                            To = new DateTime(2022, 9, 3, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("68677843-16d1-451b-909b-11a4fe0b10cf"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750114"),
-                            From = new DateTime(2022, 8, 28, 8, 0, 0, 0, DateTimeKind.Local),
-                            Shift = 1,
-                            Space = 18,
-                            To = new DateTime(2022, 9, 1, 14, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = new Guid("6f64d646-01f4-4fe1-9b7a-7cfe990bf271"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750145"),
-                            From = new DateTime(2022, 8, 19, 8, 0, 0, 0, DateTimeKind.Local),
-                            Shift = 1,
-                            Space = 14,
-                            To = new DateTime(2022, 8, 30, 14, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = new Guid("ac00768d-b49c-4a11-b2d7-efabcdaef3a2"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750110"),
-                            From = new DateTime(2022, 8, 15, 14, 0, 0, 0, DateTimeKind.Local),
+                            Id = new Guid("3340e186-8ea4-4bb9-8844-c049dca78e1b"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750104"),
+                            From = new DateTime(2022, 8, 12, 0, 0, 0, 0, DateTimeKind.Local),
                             Shift = 2,
-                            Space = 13,
-                            To = new DateTime(2022, 8, 18, 21, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = new Guid("24576c42-ecb2-4fb2-9b84-70702d63dd60"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750103"),
-                            From = new DateTime(2022, 8, 5, 9, 30, 0, 0, DateTimeKind.Local),
-                            Shift = 3,
-                            Space = 20,
-                            To = new DateTime(2022, 8, 20, 18, 30, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = new Guid("d74777a9-9af0-46ae-9c91-6c50e5f71799"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750102"),
-                            From = new DateTime(2022, 8, 10, 8, 0, 0, 0, DateTimeKind.Local),
-                            Shift = 1,
-                            Space = 17,
-                            To = new DateTime(2022, 8, 22, 14, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = new Guid("585ad9b5-a5db-428a-9f1d-f578b318edba"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750127"),
-                            From = new DateTime(2022, 8, 24, 14, 0, 0, 0, DateTimeKind.Local),
-                            Shift = 2,
-                            Space = 14,
-                            To = new DateTime(2022, 9, 4, 21, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = new Guid("7bc71406-060a-4718-9c96-a51ab07f733f"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750138"),
-                            From = new DateTime(2022, 8, 5, 8, 0, 0, 0, DateTimeKind.Local),
-                            Shift = 1,
-                            Space = 13,
-                            To = new DateTime(2022, 8, 16, 14, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = new Guid("f8bce87b-d0f7-4b14-a1fd-1b96f1f9e382"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750117"),
-                            From = new DateTime(2022, 8, 20, 8, 0, 0, 0, DateTimeKind.Local),
-                            Shift = 1,
                             Space = 6,
-                            To = new DateTime(2022, 8, 29, 14, 0, 0, 0, DateTimeKind.Local)
+                            To = new DateTime(2022, 8, 17, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("60d32f25-bd7c-46ce-bdd4-6e6e1bf1c5aa"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750122"),
-                            From = new DateTime(2022, 8, 10, 8, 0, 0, 0, DateTimeKind.Local),
+                            Id = new Guid("227030ae-e9d6-4381-a3c6-60fb594f90d4"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750121"),
+                            From = new DateTime(2022, 8, 6, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 2,
+                            Space = 14,
+                            To = new DateTime(2022, 8, 16, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("3539862d-c6c6-4fa5-9201-33f28f3fb95a"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750113"),
+                            From = new DateTime(2022, 8, 6, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 1,
+                            Space = 19,
+                            To = new DateTime(2022, 9, 4, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("fc58c834-859b-4dd7-a634-2137099d4ba5"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750145"),
+                            From = new DateTime(2022, 8, 29, 0, 0, 0, 0, DateTimeKind.Local),
                             Shift = 1,
                             Space = 8,
-                            To = new DateTime(2022, 8, 28, 14, 0, 0, 0, DateTimeKind.Local)
+                            To = new DateTime(2022, 9, 3, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("ccb777aa-175a-44ed-bf0f-bd9110143005"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750132"),
-                            From = new DateTime(2022, 8, 12, 14, 0, 0, 0, DateTimeKind.Local),
-                            Shift = 2,
-                            Space = 5,
-                            To = new DateTime(2022, 8, 27, 21, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = new Guid("c0d29a3a-dc74-46cd-8067-7a11fab8fb46"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750135"),
-                            From = new DateTime(2022, 8, 16, 8, 0, 0, 0, DateTimeKind.Local),
+                            Id = new Guid("0bb27d95-9112-400b-a0cb-80bcd4692043"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750138"),
+                            From = new DateTime(2022, 8, 7, 0, 0, 0, 0, DateTimeKind.Local),
                             Shift = 1,
-                            Space = 18,
-                            To = new DateTime(2022, 8, 23, 14, 0, 0, 0, DateTimeKind.Local)
+                            Space = 4,
+                            To = new DateTime(2022, 8, 10, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("7f700768-1236-4432-b043-3d6723267721"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750113"),
-                            From = new DateTime(2022, 8, 7, 9, 30, 0, 0, DateTimeKind.Local),
+                            Id = new Guid("9a1a7e48-6363-4e84-aafd-d03707850a49"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750128"),
+                            From = new DateTime(2022, 8, 22, 0, 0, 0, 0, DateTimeKind.Local),
                             Shift = 3,
-                            Space = 19,
-                            To = new DateTime(2022, 8, 9, 18, 30, 0, 0, DateTimeKind.Local)
+                            Space = 8,
+                            To = new DateTime(2022, 8, 28, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("46eafc3f-40a9-4919-9e13-4cac08276096"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750105"),
-                            From = new DateTime(2022, 8, 27, 8, 0, 0, 0, DateTimeKind.Local),
-                            Shift = 1,
-                            Space = 10,
-                            To = new DateTime(2022, 9, 2, 14, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = new Guid("ea75a917-4bb1-41c8-aaf1-b329cb36b8ed"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750143"),
-                            From = new DateTime(2022, 8, 7, 8, 0, 0, 0, DateTimeKind.Local),
-                            Shift = 1,
-                            Space = 7,
-                            To = new DateTime(2022, 8, 13, 14, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = new Guid("11814051-a95a-45aa-9484-cd5f4e1caccd"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750137"),
-                            From = new DateTime(2022, 8, 20, 14, 0, 0, 0, DateTimeKind.Local),
-                            Shift = 2,
-                            Space = 16,
-                            To = new DateTime(2022, 8, 21, 21, 0, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = new Guid("1588525b-70cb-4342-9ce1-1a6db99002cc"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750107"),
-                            From = new DateTime(2022, 8, 16, 9, 30, 0, 0, DateTimeKind.Local),
-                            Shift = 3,
-                            Space = 14,
-                            To = new DateTime(2022, 8, 17, 18, 30, 0, 0, DateTimeKind.Local)
-                        },
-                        new
-                        {
-                            Id = new Guid("2c26a01f-da47-4c6c-8a39-7f8787d34c4d"),
+                            Id = new Guid("b9ffcf1a-2116-41d3-bd96-87cf15b963a9"),
                             By = new Guid("4c33537b-e856-463b-811e-e8e059750142"),
-                            From = new DateTime(2022, 8, 13, 14, 0, 0, 0, DateTimeKind.Local),
-                            Shift = 2,
+                            From = new DateTime(2022, 8, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 1,
+                            Space = 9,
+                            To = new DateTime(2022, 8, 30, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("a00e7a40-ebb2-4b52-8ad4-78b400c3b25b"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750115"),
+                            From = new DateTime(2022, 8, 30, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 1,
                             Space = 15,
-                            To = new DateTime(2022, 8, 15, 21, 0, 0, 0, DateTimeKind.Local)
+                            To = new DateTime(2022, 9, 3, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("a7251529-413a-4de4-bdfe-68f963769efd"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750118"),
-                            From = new DateTime(2022, 8, 23, 9, 30, 0, 0, DateTimeKind.Local),
-                            Shift = 3,
-                            Space = 20,
-                            To = new DateTime(2022, 8, 29, 18, 30, 0, 0, DateTimeKind.Local)
+                            Id = new Guid("960198f0-d82e-42db-b1dc-c53f24927cb0"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750106"),
+                            From = new DateTime(2022, 8, 17, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 1,
+                            Space = 14,
+                            To = new DateTime(2022, 8, 21, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("e6545642-a1c8-43d2-bef0-06ca3437a657"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750147"),
-                            From = new DateTime(2022, 8, 24, 8, 0, 0, 0, DateTimeKind.Local),
+                            Id = new Guid("54300f33-068b-4691-9a84-1d30be9ef8c0"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750146"),
+                            From = new DateTime(2022, 8, 23, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 2,
+                            Space = 2,
+                            To = new DateTime(2022, 8, 24, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("09daa148-b3bc-40d4-bdae-ea783b9c97a9"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750122"),
+                            From = new DateTime(2022, 8, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             Shift = 1,
                             Space = 11,
-                            To = new DateTime(2022, 9, 4, 14, 0, 0, 0, DateTimeKind.Local)
+                            To = new DateTime(2022, 8, 28, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("ec989c36-0ddf-4b41-a231-c62fc27e72cf"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750111"),
-                            From = new DateTime(2022, 8, 26, 14, 0, 0, 0, DateTimeKind.Local),
+                            Id = new Guid("40ba4eda-a227-49a8-a2a7-ce79b56252b9"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750144"),
+                            From = new DateTime(2022, 9, 1, 0, 0, 0, 0, DateTimeKind.Local),
                             Shift = 2,
-                            Space = 9,
-                            To = new DateTime(2022, 8, 28, 21, 0, 0, 0, DateTimeKind.Local)
+                            Space = 8,
+                            To = new DateTime(2022, 9, 3, 0, 0, 0, 0, DateTimeKind.Local)
                         },
                         new
                         {
-                            Id = new Guid("429f9292-8cf1-4921-a9ac-aac17b9db8c8"),
-                            By = new Guid("4c33537b-e856-463b-811e-e8e059750121"),
-                            From = new DateTime(2022, 8, 25, 9, 30, 0, 0, DateTimeKind.Local),
-                            Shift = 3,
-                            Space = 13,
-                            To = new DateTime(2022, 8, 29, 18, 30, 0, 0, DateTimeKind.Local)
+                            Id = new Guid("7f943342-bb5e-4fa8-befb-b165edb0544a"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750148"),
+                            From = new DateTime(2022, 8, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 1,
+                            Space = 6,
+                            To = new DateTime(2022, 8, 11, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("2636530b-2f8e-4462-97bc-b7eab1357ad3"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750139"),
+                            From = new DateTime(2022, 8, 5, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 2,
+                            Space = 2,
+                            To = new DateTime(2022, 8, 12, 0, 0, 0, 0, DateTimeKind.Local)
+                        },
+                        new
+                        {
+                            Id = new Guid("ebd338bd-c00c-44d4-948f-0861a5b7bfe6"),
+                            By = new Guid("4c33537b-e856-463b-811e-e8e059750141"),
+                            From = new DateTime(2022, 8, 30, 0, 0, 0, 0, DateTimeKind.Local),
+                            Shift = 1,
+                            Space = 6,
+                            To = new DateTime(2022, 9, 4, 0, 0, 0, 0, DateTimeKind.Local)
                         });
                 });
 

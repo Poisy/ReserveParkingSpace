@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@ViewData["Title"] - WebUI</title>
+    <title>@ViewData["Title"] - Паркинг</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css"/>
 </head>
@@ -16,18 +16,17 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            @if (!User.Identity.IsAuthenticated)
+            @if (User.Identity.IsAuthenticated)
             {
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#register">
-                    SignUp
-                </button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login">
-                    SignIn
+                <a asp-controller="Auth" asp-action="Logout" class="btn btn-primary">Излизане</a>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#profile">
+                    Right Sidebar Modal
                 </button>
             }
             else
             {
-                <a asp-controller="Auth" asp-action="Logout" class="btn btn-primary">Logout</a>
+                <a asp-controller="Auth" asp-action="Register" class="btn btn-primary">Регистриране</a>
+                <a asp-controller="Auth" asp-action="Login" class="btn btn-primary">Влизане</a>
             }
             <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                 <ul class="navbar-nav flex-grow-1">
@@ -45,12 +44,6 @@
 
 <div class="container">
     <main role="main" class="pb-3">
-        
-        @if (!User.Identity.IsAuthenticated)
-        {
-            <partial name="/Views/Auth/_RegisterPartial.cshtml"/>
-            <partial name="/Views/Auth/_LoginPartial.cshtml"/>
-        }
         @RenderBody()
     </main>
 </div>
@@ -64,5 +57,10 @@
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
 @RenderSection("Scripts", required: false)
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
 </body>
 </html>

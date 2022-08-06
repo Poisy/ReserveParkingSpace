@@ -9,19 +9,23 @@ namespace Domain.Entities
         public Guid Id { get; set; }
         
         [Required]
-        [StringLength(25, MinimumLength = 2, ErrorMessage = "First name length should be in range 2 - 25!")]
+        [Display(Name = "Потребителско име", Prompt = "Потребителско име")]
+        [StringLength(25, MinimumLength = 3, ErrorMessage = "Потребителското име трябва да е между 3 и 25 символа!")]
+        public string Username { get; set; }
+        
+        [Required]
+        [Display(Name = "Име", Prompt = "Име")]
+        [StringLength(25, MinimumLength = 2, ErrorMessage = "Първото име трябва да е между 2 и 25 символа!")]
         public string FirstName { get; set; }
 
         [Required]
-        [StringLength(25, MinimumLength = 2, ErrorMessage = "Last name length should be in range 2 - 25!")]
+        [Display(Name = "Фамилия", Prompt = "Фамилия")]
+        [StringLength(25, MinimumLength = 2, ErrorMessage = "Фамилното име трябва да е между 2 и 25 символа!")]
         public string LastName { get; set; }
 
         [Required]
-        [StringLength(25, MinimumLength = 3, ErrorMessage = "Username length should be in range 3 - 25!")]
-        public string Username { get; set; }
-
-        [Required]
-        [MaxLength(25, ErrorMessage = "Departure name is too long!")]
+        [Display(Name = "Отдел", Prompt = "Отдел")]
+        [MaxLength(25, ErrorMessage = "Името на отдела е твърде голямо!")]
         public string Departure { get; set; }
     }
 }
