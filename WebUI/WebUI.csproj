@@ -42,6 +42,7 @@
       <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap4-toggle-3.6.1\package.json" />
       <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap4-toggle-3.6.1\README.md" />
       <_ContentIncludedByDefault Remove="wwwroot\lib\bootstrap4-toggle-3.6.1\test\test-all-sizes.html" />
+      <_ContentIncludedByDefault Remove="wwwroot\storage\06-08-2022T23:41__496afddf-2cb9-4493-a54f-4026aa88d52d.pdf" />
     </ItemGroup>
 
 </Project>

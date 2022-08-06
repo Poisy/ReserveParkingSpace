@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using WebUI.Models;
+using WebUI.Utils;
 
 namespace WebUI.Controllers
 {
@@ -31,7 +32,7 @@ namespace WebUI.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                model.User ??= _userService.GetAsync(new Guid(_userManager.GetUserId(User))).Result;
+                model.User ??= await _userService.GetAsync(new Guid(_userManager.GetUserId(User)));
             }
             
             model.UserReservation = await _reservationService.GetReservationByUser(model.User.Id);
@@ -66,12 +67,12 @@ namespace WebUI.Controllers
 
         /// <summary> Action method where you can submit a new reservation </summary>
         [HttpPost]
-        public async Task<IActionResult> Reserve(ReservationViewModel viewModel)
+        public async Task<IActionResult> Reserve(ReservationViewModel model)
         {
             var resultModel = new IndexViewModel
             {
-                Date = viewModel.From,
-                Shift = viewModel.Shift
+                Date = model.From,
+                Shift = model.Shift
             };
 
 
@@ -82,28 +83,38 @@ namespace WebUI.Controllers
             }
             else if (ModelState.IsValid)
             {
-                var reservation = viewModel.Model(new Guid(_userManager.GetUserId(User)));
+                var userId = new Guid(_userManager.GetUserId(User));
+                var reservation = model.Model(userId);
+                var user = await _userService.GetAsync(userId);
+                var isScheduleRequired = (model.To - model.From).Days > 2;
                 
-                if ((viewModel.To - viewModel.From).Days > 2)
+                if (isScheduleRequired)
                 {
-                    if (viewModel.Schedule is null)
+                    if (model.Schedule is null || model.Schedule.Length == 0)
                     {
                         resultModel.Messages.Add("danger");
                         resultModel.Messages.Add("Трябва да се прикачи документ за график (pdf)!");
-                    }
-                    else
-                    {
-                        // TODO: Check the file and upload it to the project storage
                         
+                        return RedirectToAction("Index", resultModel);
+                    }
+                    
+                    if (model.Schedule.ContentType != "application/pdf")
+                    {
+                        resultModel.Messages.Add("danger");
+                        resultModel.Messages.Add("Файла трябва да е в .pdf формат!");
+                            
+                        return RedirectToAction("Index", resultModel);
                     }
                 }
-
+            
                 try
                 {
                     await _reservationService.TryAddAsync(reservation);
                     
                     resultModel.Messages.Add("success");
                     resultModel.Messages.Add("Успешно запазихте мястото!");
+
+                    await FileManager.SaveSchedule(model.Schedule, user);
                 }
                 catch (UserAlreadyReservedException)
                 {
