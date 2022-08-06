@@ -33,9 +33,10 @@ namespace WebUI.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 model.User ??= await _userService.GetAsync(new Guid(_userManager.GetUserId(User)));
+                model.UserReservation = await _reservationService.GetReservationByUser(model.User.Id);
             }
             
-            model.UserReservation = await _reservationService.GetReservationByUser(model.User.Id);
+            
             model.Shifts = new List<SelectListItem>
             {
                 new SelectListItem {Text = "1ва", Value = "1"},
