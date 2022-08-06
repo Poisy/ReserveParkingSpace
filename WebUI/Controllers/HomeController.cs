@@ -29,6 +29,11 @@ namespace WebUI.Controllers
         /// <summary> The Action method you route everytime you go to the home page. </summary>
         public async Task<IActionResult> Index(IndexViewModel model)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                model.User ??= _userService.GetAsync(new Guid(_userManager.GetUserId(User))).Result;
+            }
+            
             model.Shifts = new List<SelectListItem>
             {
                 new SelectListItem {Text = "1ва", Value = "1"},
@@ -37,7 +42,7 @@ namespace WebUI.Controllers
             };
             model.Shifts[model.Shift-1].Selected = true;
             model.Reservations = new Reservation[2,10];
-           
+
 
             // Gets all reservations which are for the current date
             var reservations = _reservationService.GetReservationsByDate(model.Date);
@@ -70,7 +75,8 @@ namespace WebUI.Controllers
 
             if (!User.Identity.IsAuthenticated)
             {
-                resultModel.Errors.Add("Трябва да си влязал в профила си за да запазиш място!");
+                resultModel.Messages.Add("danger");
+                resultModel.Messages.Add("Трябва да си влязал в профила си за да запазиш място!");
             }
             else if (ModelState.IsValid)
             {
@@ -80,7 +86,8 @@ namespace WebUI.Controllers
                 {
                     if (viewModel.Schedule is null)
                     {
-                        resultModel.Errors.Add("Трябва да се прикачи документ за график (pdf)!");
+                        resultModel.Messages.Add("danger");
+                        resultModel.Messages.Add("Трябва да се прикачи документ за график (pdf)!");
                     }
                     else
                     {
@@ -92,14 +99,19 @@ namespace WebUI.Controllers
                 try
                 {
                     await _reservationService.TryAddAsync(reservation);
+                    
+                    resultModel.Messages.Add("success");
+                    resultModel.Messages.Add("Успешно запазихте мястото!");
                 }
                 catch (UserAlreadyReservedException)
                 {
-                    resultModel.Errors.Add("Вече имате едно запазено място, не може да имате повече!");
+                    resultModel.Messages.Add("danger");
+                    resultModel.Messages.Add("Вече имате едно запазено място, не може да имате повече!");
                 }
                 catch (SpaceAlreadyTakenException)
                 {
-                    resultModel.Errors.Add("Това място е вече заето от някой! Моля опитайте с друго или друг период от време.");
+                    resultModel.Messages.Add("danger");
+                    resultModel.Messages.Add("Това място е вече заето от някой! Моля опитайте с друго или друг период от време.");
                 }
             }
             else
@@ -108,7 +120,8 @@ namespace WebUI.Controllers
                 {
                     foreach (var error in value.Errors)
                     {
-                        resultModel.Errors.Add(error.ErrorMessage);
+                        resultModel.Messages.Add("danger");
+                        resultModel.Messages.Add(error.ErrorMessage);
                     }
                 }
             }
@@ -116,11 +129,38 @@ namespace WebUI.Controllers
             return RedirectToAction("Index", resultModel);
         }
 
-        public IActionResult RemoveReservation()
+        /// <summary> Action method where you can submit a reservation to be deleted. </summary>
+        [HttpPost]
+        public async Task<IActionResult> RemoveReservation(Reservation model)
         {
+            var resultModel = new IndexViewModel();
             
-            
-            throw new NotImplementedException();
+            if (model != null && User.Identity.IsAuthenticated)
+            {
+                resultModel.Date = model.From;
+                resultModel.Shift = model.Shift == 0 ? 1 : model.Shift;
+                model.User ??= _userService.GetAsync(new Guid(_userManager.GetUserId(User))).Result;
+
+                if (model.By == model.User.Id)
+                { 
+                    await _reservationService.DeleteAsync(model.Id);
+                    
+                    resultModel.Messages.Add("success");
+                    resultModel.Messages.Add("Успешно освободихте мястото!");
+                }
+                else
+                {
+                    resultModel.Messages.Add("danger");
+                    resultModel.Messages.Add("Това не е ваше място!");
+                }
+            }
+            else
+            {
+                resultModel.Messages.Add("danger");
+                resultModel.Messages.Add("Беше изпратена празна форма!");   
+            }
+
+            return RedirectToAction("Index", resultModel);
         }
 
         public IActionResult Privacy()

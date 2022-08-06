@@ -1,5 +1,8 @@
-@model Domain.Entities.Reservation
+@model Reservation
 
+@{
+    var user = ViewData["user"] as User;
+}
 
 <input type="image" src="car@(Model.Space % 3 == 0 ? 1 : 2).png" alt="car" class="btTxt submit mx-auto d-block car-img" data-toggle="modal" data-target="#id_@Model.Space"/>
 
@@ -33,6 +36,15 @@
                 </div>
             </div>
             <div class="modal-footer">
+                @if (user?.Id == Model.By)
+                {
+                    <form asp-controller="Home" asp-action="RemoveReservation">
+                        <div hidden="hidden">
+                          @Html.EditorForModel()
+                        </div>
+                        <button type="submit" class="btn btn-danger">Освобождаване</button>
+                    </form>
+                }
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Затвори</button>
             </div>
         </div>

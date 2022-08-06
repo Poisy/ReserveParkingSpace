@@ -2,16 +2,17 @@
 
 @{
     ViewData["Title"] = "Reservations";
+    ViewData["user"] = Model.User;
     ViewData["date"] = Model.Date.ToString("yyyy-MM-dd");
     ViewData["minDate"] = DateTime.Today.ToString("yyyy-MM-dd");
     ViewData["maxDate"] = DateTime.Today.AddMonths(1).ToString("yyyy-MM-dd");
 }
 
-@if (Model.Errors.Count > 0)
+@if (Model.Messages.Count > 0)
 {
-    foreach (var error in Model.Errors)
+    for (int i = 0; i < Model.Messages.Count; i++)
     {
-        <p>@error</p>
+        <p class="text-@Model.Messages[i++]">@Model.Messages[i]</p>
     }
 }
 <div class="container">
