@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using Domain.Entities;
 using Domain.Exceptions;
-using Infrastructure;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.Extensions.Logging;
 using WebUI.Models;
 
 namespace WebUI.Controllers
@@ -64,25 +59,28 @@ namespace WebUI.Controllers
 
         /// <summary> Action method where you can submit a new reservation </summary>
         [HttpPost]
-        public async Task<IActionResult> Reserve(IndexViewModel model)
+        public async Task<IActionResult> Reserve(ReservationViewModel viewModel)
         {
-            model.Shift = model.NewReservation.Shift;
-            model.Date = model.NewReservation.From;
+            var resultModel = new IndexViewModel
+            {
+                Date = viewModel.From,
+                Shift = viewModel.Shift
+            };
 
 
             if (!User.Identity.IsAuthenticated)
             {
-                model.Errors.Add("Трябва да си влязал в профила си за да запазиш място!");
+                resultModel.Errors.Add("Трябва да си влязал в профила си за да запазиш място!");
             }
             else if (ModelState.IsValid)
             {
-                var reservation = model.NewReservation.Model(new Guid(_userManager.GetUserId(User)));
+                var reservation = viewModel.Model(new Guid(_userManager.GetUserId(User)));
                 
-                if ((model.NewReservation.To - model.NewReservation.From).Days > 2)
+                if ((viewModel.To - viewModel.From).Days > 2)
                 {
-                    if (model.NewReservation.Schedule is null)
+                    if (viewModel.Schedule is null)
                     {
-                        model.Errors.Add("Трябва да се прикачи документ за график (pdf)!");
+                        resultModel.Errors.Add("Трябва да се прикачи документ за график (pdf)!");
                     }
                     else
                     {
@@ -95,13 +93,13 @@ namespace WebUI.Controllers
                 {
                     await _reservationService.TryAddAsync(reservation);
                 }
-                catch (UserAlreadyReservedException ue)
+                catch (UserAlreadyReservedException)
                 {
-                    model.Errors.Add("Вече имате едно запазено място, не може да имате повече!");
+                    resultModel.Errors.Add("Вече имате едно запазено място, не може да имате повече!");
                 }
-                catch (SpaceAlreadyTakenException se)
+                catch (SpaceAlreadyTakenException)
                 {
-                    model.Errors.Add("Това място е вече заето от някой! Моля опитайте с друго или друг период от време.");
+                    resultModel.Errors.Add("Това място е вече заето от някой! Моля опитайте с друго или друг период от време.");
                 }
             }
             else
@@ -110,12 +108,12 @@ namespace WebUI.Controllers
                 {
                     foreach (var error in value.Errors)
                     {
-                        model.Errors.Add(error.ErrorMessage);
+                        resultModel.Errors.Add(error.ErrorMessage);
                     }
                 }
             }
             
-            return RedirectToAction("Index", model);
+            return RedirectToAction("Index", resultModel);
         }
 
         public IActionResult RemoveReservation()

@@ -105,3 +105,7 @@ body {
   height: 62px;
   cursor: pointer;
 }
+
+hr {
+  background-color: #FCA311;
+}

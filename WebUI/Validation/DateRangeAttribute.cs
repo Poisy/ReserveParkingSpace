@@ -9,8 +9,8 @@ namespace WebUI.Validation
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var date = (DateTime)value;
-            var minDate = new ReservationModel().MinDate;
-            var maxDate = new ReservationModel().MaxDate;
+            var minDate = DateTime.Today;
+            var maxDate = DateTime.Today.AddMonths(1);
 
             if (date >= minDate && date <= maxDate)
             {

@@ -7,7 +7,7 @@ using WebUI.Validation;
 
 namespace WebUI.Models
 {
-    public class ReservationModel
+    public class ReservationViewModel
     {
         [Required]
         [DateRange]
@@ -28,11 +28,6 @@ namespace WebUI.Models
         public int Shift { get; set; }  
 
         public IFormFile Schedule { get; set; }
-
-
-        public DateTime MinDate { get; } = DateTime.Today;
-
-        public DateTime MaxDate { get; } = DateTime.Today.AddMonths(1);
 
 
         public DateTime MaxReservationDate => From.AddDays(7);

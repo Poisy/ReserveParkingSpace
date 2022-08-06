@@ -1,14 +1,10 @@
-﻿@using Domain.Entities
-@using System.Globalization
-@model IndexViewModel
+﻿@model IndexViewModel
 
 @{
-    ViewData["Title"] = "Home Page";
-
-    var date = Model.Date.ToString("yyyy-MM-dd");
-
-    var minDate = Model.NewReservation.MinDate.ToString("yyyy-MM-dd");
-    var maxDate = Model.NewReservation.MaxDate.ToString("yyyy-MM-dd");
+    ViewData["Title"] = "Reservations";
+    ViewData["date"] = Model.Date.ToString("yyyy-MM-dd");
+    ViewData["minDate"] = DateTime.Today.ToString("yyyy-MM-dd");
+    ViewData["maxDate"] = DateTime.Today.AddMonths(1).ToString("yyyy-MM-dd");
 }
 
 @if (Model.Errors.Count > 0)
@@ -22,7 +18,7 @@
     <div class="row">
         <form asp-controller="Home" asp-action="Index">
             <div class="col">
-                <input asp-for="Date" class="form-control" type="date" min="@minDate" max="@maxDate" value="@date">
+                <input asp-for="Date" class="form-control" type="date" min="@ViewData["minDate"]" max="@ViewData["maxDate"]" value="@ViewData["date"]">
             </div>
             <div class="col">
                 <label class="text-center">Смяна</label>
@@ -40,106 +36,16 @@
             @for (int col = 0; col < 10; col++)
             {
                 var reservation = Model.Reservations[row, col];
-                var space = (row * 10) + col + 1;
 
 
                 <div class="col d-flex flex-wrap align-items-center parking-lot-@(row == 0 ? "first" : "second")-line">
                     @if (reservation != null)
                     {
-                        <input type="image" src="car@((row * col) % 3 == 0 ? 1 : 2).png" alt="car" class="btTxt submit mx-auto d-block car-img" data-toggle="modal" data-target="#id_@space"/>
-
-                        <div class="modal fade" id="id_@space" tabindex="-1" role="dialog" aria-labelledby="id_@space" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">Място @(reservation.Space)</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body color-bg">
-                                        <h3 class="text-center color-text">@reservation.User.Username (@reservation.User.FirstName, @reservation.User.LastName)</h3>
-                                        <hr/>
-                                        <h5 class="text-center color-text">От: @reservation.From.ToString("dddd HH:mm (dd MMMM yyyy)", new CultureInfo("bg"))</h5>
-                                        <h5 class="text-center color-text">До: @reservation.To.ToString("dddd HH:mm (dd MMMM yyyy)", new CultureInfo("bg"))</h5>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal">Затвори</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @await Html.PartialAsync("_CarSpace", reservation)
                     }
                     else
                     {
-                        <input type="image" src="free_space.png" alt="empty" class="btTxt submit mx-auto d-block free-space-img" data-toggle="modal" data-target="#id_@((row * 10) + col + 1)"/>
-
-                        <div class="modal fade" id="id_@space" tabindex="-1" role="dialog" aria-labelledby="id_@space" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLongTitle">Място @space</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form asp-controller="Home" asp-action="Reserve" enctype="multipart/form-data" method="post">
-                                            <div class="container color-bg rounded">
-                                                <div class="row">
-                                                    <div class="col pt-5">
-                                                        <h3 class="text-center color-text">Резервиране</h3>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                                    <div class="col p-5">
-                                                        <div class="row">
-                                                            <div class="col form-group">
-                                                                <label class="text-center color-text">Място</label>
-                                                                <input asp-for="NewReservation.Space" class="form-control" type="number" value="@space" readonly/>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col form-group">
-                                                                <label class="text-center color-text">От</label>
-                                                                <input asp-for="NewReservation.From" class="form-control" type="date" min="@minDate" max="@maxDate" value="@date" data-toggle="tooltip" title="Максималният период за запазване е 1 седмица и не-повече от 1 месец напред във времето.">
-                                                            </div>
-                                                            <div class="col form-group">
-                                                                <label class="text-center color-text">До</label>
-                                                                <input asp-for="NewReservation.To" class="form-control" type="date" min="@minDate" max="@maxDate" value="@date" data-toggle="tooltip" title="Максималният период за запазване е 1 седмица и не-повече от 1 месец напред във времето.">
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <label class="text-center color-text">Прикачи график (pdf) до 2MB</label>
-                                                            <div class="input-group mb-3">
-                                                                <div class="custom-file">
-                                                                    <label asp-for="NewReservation.Schedule" class="custom-file-label">Избери файл</label>
-                                                                    <input asp-for="NewReservation.Schedule" type="file" class="custom-file-input" data-toggle="tooltip" title="Само при заемане на паркомясто за повече от 2 дни.">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <label class="text-center color-text">Смяна (период)</label>
-                                                            <select asp-for="NewReservation.Shift" class="custom-select">
-                                                                <option value="0" selected>Избери смяна</option>
-                                                                <option value="1">1ва (08:00 - 14:00)</option>
-                                                                <option value="2">2ра (14:00 - 21:00)</option>
-                                                                <option value="3">Целодневна (09:30 - 18:30)</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="submit" asp-controller="Home" asp-action="Reserve" class="btn btn-primary btn-lg btn-block">Резервирай!</button>
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">Затвори</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @await Html.PartialAsync("_ReserveSpace", new ReservationViewModel { Space = (row * 10) + col + 1 })
                     }
 
                 </div>

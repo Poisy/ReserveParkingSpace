@@ -1,13 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using Domain.Entities;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
 using WebUI.Models;
 
 namespace WebUI.Controllers
@@ -85,7 +80,7 @@ namespace WebUI.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 
-                ModelState.AddModelError("", "Username or Password are incorrect!");
+                ModelState.AddModelError("", "Грешно име и парола!");
             }
 
             return View();

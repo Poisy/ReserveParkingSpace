@@ -16,14 +16,14 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            @if (!User.Identity.IsAuthenticated)
+            @if (User.Identity.IsAuthenticated)
             {
-                <a asp-controller="Auth" asp-action="Register" class="btn btn-primary">SignUp</a>
-                <a asp-controller="Auth" asp-action="Login" class="btn btn-primary">SignIn</a>
+                <a asp-controller="Auth" asp-action="Logout" class="btn btn-primary">Излизане</a>
             }
             else
             {
-                <a asp-controller="Auth" asp-action="Logout" class="btn btn-primary">Logout</a>
+                <a asp-controller="Auth" asp-action="Register" class="btn btn-primary">Регистриране</a>
+                <a asp-controller="Auth" asp-action="Login" class="btn btn-primary">Влизане</a>
             }
             <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                 <ul class="navbar-nav flex-grow-1">

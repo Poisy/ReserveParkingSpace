@@ -10,8 +10,6 @@ namespace WebUI.Models
     {
         public Reservation[,] Reservations { get; set; }
 
-        public ReservationModel NewReservation { get; set; } = new ReservationModel();
-
         public List<string> Errors { get; set; } = new List<string>();
     
         public DateTime Date { get; set; } = DateTime.Today;
