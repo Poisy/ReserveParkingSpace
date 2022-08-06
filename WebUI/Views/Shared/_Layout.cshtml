@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@ViewData["Title"] - WebUI</title>
+    <title>@ViewData["Title"] - Паркинг</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css"/>
 </head>
@@ -19,6 +19,9 @@
             @if (User.Identity.IsAuthenticated)
             {
                 <a asp-controller="Auth" asp-action="Logout" class="btn btn-primary">Излизане</a>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#profile">
+                    Right Sidebar Modal
+                </button>
             }
             else
             {

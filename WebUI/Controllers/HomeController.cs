@@ -34,12 +34,14 @@ namespace WebUI.Controllers
                 model.User ??= _userService.GetAsync(new Guid(_userManager.GetUserId(User))).Result;
             }
             
+            model.UserReservation = await _reservationService.GetReservationByUser(model.User.Id);
             model.Shifts = new List<SelectListItem>
             {
                 new SelectListItem {Text = "1ва", Value = "1"},
                 new SelectListItem {Text = "2ра", Value = "2"},
                 new SelectListItem {Text = "Целодневна", Value = "3"}
             };
+            model.Shift = model.Shift == 0 ? 1 : model.Shift;
             model.Shifts[model.Shift-1].Selected = true;
             model.Reservations = new Reservation[2,10];
 
@@ -138,7 +140,7 @@ namespace WebUI.Controllers
             if (model != null && User.Identity.IsAuthenticated)
             {
                 resultModel.Date = model.From;
-                resultModel.Shift = model.Shift == 0 ? 1 : model.Shift;
+                resultModel.Shift = model.Shift;
                 model.User ??= _userService.GetAsync(new Guid(_userManager.GetUserId(User))).Result;
 
                 if (model.By == model.User.Id)

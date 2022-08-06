@@ -32,6 +32,11 @@ namespace Infrastructure.Repos
             return _db.Reservations;
         }
 
+        public async Task<Reservation> GetByUserId(Guid userId)
+        {
+            return await _db.Reservations.FirstOrDefaultAsync(reservation => reservation.By == userId);
+        }
+
         public async Task DeleteAsync(Reservation reservation)
         {
             _db.Remove(reservation);

@@ -8,6 +8,7 @@ namespace WebUI.Models
 {
     public class IndexViewModel
     {
+        
         public Reservation[,] Reservations { get; set; }
 
         public List<string> Messages { get; set; } = new List<string>();
@@ -15,6 +16,8 @@ namespace WebUI.Models
         public DateTime Date { get; set; } = DateTime.Today;
 
         public int Shift { get; set; } = 1;
+
+        public Reservation UserReservation { get; set; }
 
         public User User { get; set; }
 

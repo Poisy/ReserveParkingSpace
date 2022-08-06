@@ -1,7 +1,7 @@
 ﻿@model IndexViewModel
 
 @{
-    ViewData["Title"] = "Reservations";
+    ViewData["Title"] = "Паркинг";
     ViewData["user"] = Model.User;
     ViewData["date"] = Model.Date.ToString("yyyy-MM-dd");
     ViewData["minDate"] = DateTime.Today.ToString("yyyy-MM-dd");
@@ -52,5 +52,10 @@
                 </div>
             }
         </div>
+    }
+    
+    @if (User.Identity.IsAuthenticated)
+    {
+        @await Html.PartialAsync("_Profile", @Model.UserReservation)
     }
 </div>

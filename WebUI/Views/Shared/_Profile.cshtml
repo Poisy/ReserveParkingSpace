@@ -1,0 +1,48 @@
+@model Reservation
+
+@{
+    var user = ViewData["user"] as User;
+}
+
+<div class="modal fade" id="profile" tabindex="-1" role="dialog" aria-labelledby="profileLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="profileLabel">Здравей @user?.Username!</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container color-bg rounded">
+                    <h3 class="text-center color-text pt-4 p-2">Име, Фамилия: @user?.FirstName, @user?.LastName</h3>
+                    <h3 class="text-center color-text pb-3 p-2">Отдел: @user?.Departure</h3>
+                    <hr/>
+                    @if (Model != null)
+                    {
+                        <h5 class="text-center color-text pt-4">Място: @Model.Space</h5>
+                        <h5 class="text-center color-text">Смяна: @Model.Shift</h5>
+                        <h5 class="text-center color-text">От: @Model.From.ToString("dddd HH:mm (dd MMMM yyyy)", new CultureInfo("bg"))</h5>
+                        <h5 class="text-center color-text pb-3">До: @Model.To.ToString("dddd HH:mm (dd MMMM yyyy)", new CultureInfo("bg"))</h5>
+                    }
+                    else
+                    {
+                        <h5 class="text-center color-text p-3">Нямате запазено място</h5>
+                    }
+                </div>
+            </div>
+            <div class="modal-footer">
+                @if (Model != null)
+                {
+                    <form asp-controller="Home" asp-action="RemoveReservation">
+                        <div hidden="hidden">
+                          @Html.EditorForModel()
+                        </div>
+                        <button type="submit" class="btn btn-danger">Освобождаване</button>
+                    </form>
+                }
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Затвори</button>
+            </div>
+        </div>
+    </div>
+</div>

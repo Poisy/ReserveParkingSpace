@@ -127,5 +127,10 @@ namespace Infrastructure.Services
 
             return reservations;
         }
+
+        public async Task<Reservation> GetReservationByUser(Guid userId)
+        {
+            return await _reservationRepo.GetByUserId(userId);
+        }
     }
 }
