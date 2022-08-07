@@ -195,15 +195,6 @@ namespace WebUI.Controllers
 
             return RedirectToAction("Index", resultModel);
         }
-
-        
-        
-        //=============================================================================================
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-        
         #endregion
     }
 }
