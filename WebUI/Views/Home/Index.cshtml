@@ -1,36 +1,58 @@
 ﻿@model IndexViewModel
 
 @{
+    // Setting requirements to the ViewData
     ViewData["Title"] = "Паркинг";
     ViewData["user"] = Model.User;
     ViewData["date"] = Model.Date.ToString("yyyy-MM-dd");
     ViewData["minDate"] = DateTime.Today.ToString("yyyy-MM-dd");
     ViewData["maxDate"] = DateTime.Today.AddMonths(1).ToString("yyyy-MM-dd");
+
+    var hasMessages = Model.Messages.Count > 0;
 }
 
-@if (Model.Messages.Count > 0)
+@*==== Message modal ====*@
+@if (hasMessages)
 {
-    for (int i = 0; i < Model.Messages.Count; i++)
-    {
-        <p class="text-@Model.Messages[i++]">@Model.Messages[i]</p>
-    }
+    <div class="modal" tabindex="-1" role="dialog" id="on-msg-modal-true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    @for (int i = 0; i < Model.Messages.Count; i++)
+                    {
+                    <p class="text-@Model.Messages[i++]">@Model.Messages[i]</p>
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-lg btn-block btn-@Model.Messages[0]" data-dismiss="modal">Ок</button>
+                </div>
+            </div>
+        </div>
+    </div>   
 }
+
+
 <div class="container">
-    <div class="row">
-        <form asp-controller="Home" asp-action="Index">
-            <div class="col">
+    
+    @*==== Reservation Searching form ====*@
+    <form asp-controller="Home" asp-action="Index">
+        <div class="form-row align-items-end">
+            <div class="col form-group">
+                <label class="text-center">Дата</label>
                 <input asp-for="Date" class="form-control" type="date" min="@ViewData["minDate"]" max="@ViewData["maxDate"]" value="@ViewData["date"]">
             </div>
-            <div class="col">
+            <div class="col form-group">
                 <label class="text-center">Смяна</label>
                 <select asp-for="Shift" asp-items="@Model.Shifts" class="custom-select"></select>
             </div>
-            <div class="col">
-                <button type="submit" class="btn btn-primary">Потърси!</button>
+            <div class="col form-group">
+                <button type="submit" class="btn btn-main">Потърси!</button>
             </div>
-        </form>
-    </div>
+        </div>
 
+    </form>
+
+    @*==== Parking Lot ====*@
     @for (int row = 0; row < 2; row++)
     {
         <div class="row">
@@ -42,18 +64,20 @@
                 <div class="col d-flex flex-wrap align-items-center parking-lot-@(row == 0 ? "first" : "second")-line">
                     @if (reservation != null)
                     {
+                        @*==== Already Taken Space partial ====*@
                         @await Html.PartialAsync("_CarSpace", reservation)
                     }
                     else
                     {
+                        @*==== Empty Space partial ====*@
                         @await Html.PartialAsync("_ReserveSpace", new ReservationViewModel { Space = (row * 10) + col + 1 })
                     }
-
                 </div>
             }
         </div>
     }
-    
+
+    @*==== Profile modal ====*@
     @if (User.Identity.IsAuthenticated)
     {
         @await Html.PartialAsync("_Profile", @Model.UserReservation)

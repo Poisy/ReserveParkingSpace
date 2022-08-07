@@ -4,6 +4,7 @@
     var user = ViewData["user"] as User;
 }
 
+@*==== Profile modal ====*@
 <div class="modal fade" id="profile" tabindex="-1" role="dialog" aria-labelledby="profileLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -14,29 +15,30 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="container color-bg rounded">
-                    <h3 class="text-center color-text pt-4 p-2">Име, Фамилия: @user?.FirstName, @user?.LastName</h3>
-                    <h3 class="text-center color-text pb-3 p-2">Отдел: @user?.Departure</h3>
+                <div class="container bg-main rounded">
+                    <h3 class="text-center text-main pt-4 p-2">Име, Фамилия: @user?.FirstName, @user?.LastName</h3>
+                    <h3 class="text-center text-main pb-3 p-2">Отдел: @user?.Departure</h3>
                     <hr/>
                     @if (Model != null)
                     {
-                        <h5 class="text-center color-text pt-4">Място: @Model.Space</h5>
-                        <h5 class="text-center color-text">Смяна: @Model.Shift</h5>
-                        <h5 class="text-center color-text">От: @Model.From.ToString("dddd HH:mm (dd MMMM yyyy)", new CultureInfo("bg"))</h5>
-                        <h5 class="text-center color-text pb-3">До: @Model.To.ToString("dddd HH:mm (dd MMMM yyyy)", new CultureInfo("bg"))</h5>
+                        <h5 class="text-center text-main pt-4">Място: @Model.Space</h5>
+                        <h5 class="text-center text-main">Смяна: @Model.Shift</h5>
+                        <h5 class="text-center text-main">От: @Model.From.ToString("dddd HH:mm (dd MMMM yyyy)", new CultureInfo("bg"))</h5>
+                        <h5 class="text-center text-main pb-3">До: @Model.To.ToString("dddd HH:mm (dd MMMM yyyy)", new CultureInfo("bg"))</h5>
                     }
                     else
                     {
-                        <h5 class="text-center color-text p-3">Нямате запазено място</h5>
+                        <h5 class="text-center text-main p-3">Нямате запазено място</h5>
                     }
                 </div>
             </div>
             <div class="modal-footer">
+                @*==== Release Space modal ====*@
                 @if (Model != null)
                 {
                     <form asp-controller="Home" asp-action="RemoveReservation">
                         <div hidden="hidden">
-                          @Html.EditorForModel()
+                            @Html.EditorForModel()
                         </div>
                         <button type="submit" class="btn btn-danger">Освобождаване</button>
                     </form>

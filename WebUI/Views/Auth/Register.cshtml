@@ -1,10 +1,11 @@
 @model RegisterViewModel
 
+@*==== Register form ====*@
 <form asp-controller="Auth" asp-action="Register" runat="server">
-    <div class="container color-bg rounded">
+    <div class="container bg-main rounded">
         <div class="row">
             <div class="col pt-5">
-                <h3 class="text-center color-text">Регистриране</h3>
+                <h3 class="text-center text-main">Регистриране</h3>
             </div>
         </div>
         <div class="row">
@@ -12,38 +13,38 @@
             <div class="col p-5">
                 <div class="row">
                     <div class="col form-group">
-                        <label asp-for="Username" class="text-center color-text"></label>
+                        <label asp-for="Username" class="text-center text-main"></label>
                         <input asp-for="Username" class="form-control" type="text" required>
                         <span asp-validation-for="Username" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col form-group">
-                        <label asp-for="Departure" class="text-center color-text"></label>
+                        <label asp-for="Departure" class="text-center text-main"></label>
                         <input asp-for="Departure" class="form-control" type="text" required>
                         <span asp-validation-for="Departure" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col form-group">
-                        <label asp-for="FirstName" class="text-center color-text"></label>
+                        <label asp-for="FirstName" class="text-center text-main"></label>
                         <input asp-for="FirstName" class="form-control" type="text" required>
                         <span asp-validation-for="FirstName" class="text-danger"></span>
                     </div>
                     <div class="col form-group">
-                        <label asp-for="LastName" class="text-center color-text"></label>
+                        <label asp-for="LastName" class="text-center text-main"></label>
                         <input asp-for="LastName" class="form-control" type="text" required>
                         <span asp-validation-for="LastName" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col form-group">
-                        <label asp-for="Password" class="text-center color-text"></label>
+                        <label asp-for="Password" class="text-center text-main"></label>
                         <input asp-for="Password" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" title="Паролата трябва да е дълга поне 5 символа и да съдържа главна буква, специaлен символ и число!" class="form-control" required>
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                     <div class="col form-group">
-                        <label asp-for="ConfirmPassword" class="text-center color-text"></label>
+                        <label asp-for="ConfirmPassword" class="text-center text-main"></label>
                         <input asp-for="ConfirmPassword" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}" title="Паролата трябва да е дълга поне 5 символа и да съдържа главна буква, специaлен символ и число!" class="form-control" required>
                         <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                     </div>
@@ -52,7 +53,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <a asp-controller="Auth" asp-action="Login" class="btn btn-primary">Вече сте се регистрирали ?</a>
-        <button type="submit" asp-controller="Auth" asp-action="Register" class="btn btn-primary btn-lg btn-block">Регистрирай</button>
+        <a asp-controller="Auth" asp-action="Login" class="btn btn-main">Вече сте се регистрирали ?</a>
+        <button type="submit" asp-controller="Auth" asp-action="Register" class="btn btn-main-second btn-lg btn-block">Регистрирай</button>
     </div>
 </form>

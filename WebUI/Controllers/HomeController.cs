@@ -115,7 +115,10 @@ namespace WebUI.Controllers
                     resultModel.Messages.Add("success");
                     resultModel.Messages.Add("Успешно запазихте мястото!");
 
-                    await FileManager.SaveSchedule(model.Schedule, user);
+                    if (isScheduleRequired)
+                    {
+                        await FileManager.SaveSchedule(model.Schedule, user);   
+                    }
                 }
                 catch (UserAlreadyReservedException)
                 {

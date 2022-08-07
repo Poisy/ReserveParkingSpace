@@ -1,10 +1,11 @@
 @model LoginViewModel
 
+@*==== Login form ====*@
 <form asp-controller="Auth" asp-action="Login">
-    <div class="container color-bg rounded">
+    <div class="container bg-main rounded">
         <div class="row">
             <div class="col pt-5">
-                <h3 class="text-center color-text">Влизане в профила</h3>
+                <h3 class="text-center text-main">Влизане в профила</h3>
             </div>
         </div>
         <div class="row">
@@ -12,14 +13,14 @@
                 <div class="row text-danger" asp-validation-summary="ModelOnly"></div>
                 <div class="row">
                     <div class="col form-group">
-                        <label asp-for="Username" class="text-center color-text"></label>
+                        <label asp-for="Username" class="text-center text-main"></label>
                         <input asp-for="Username" class="form-control" type="text" required>
                         <span asp-validation-for="Username" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col form-group">
-                        <label asp-for="Password" class="text-center color-text"></label>
+                        <label asp-for="Password" class="text-center text-main"></label>
                         <input asp-for="Password" type="password" class="form-control" required>
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
@@ -28,7 +29,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <a asp-controller="Auth" asp-action="Register" class="btn btn-primary">Нямате регистриран профил ?</a>
-        <button type="submit" asp-controller="Auth" asp-action="Login" class="btn btn-primary btn-lg btn-block">Влизане</button>
+        <a asp-controller="Auth" asp-action="Register" class="btn btn-main">Нямате регистриран профил ?</a>
+        <button type="submit" asp-controller="Auth" asp-action="Login" class="btn btn-main-second btn-lg btn-block">Влизане</button>
     </div>
 </form>

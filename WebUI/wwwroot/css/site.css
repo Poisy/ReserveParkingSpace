@@ -61,6 +61,7 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  background-color: #e6f2ff;
 }
 .footer {
   position: absolute;
@@ -72,11 +73,38 @@ body {
 
 
 
-.color-bg {
+.bg-main {
   background-color: #14213D;
 }
-.color-text {
+.text-main {
   color:#FCA311;
+}
+
+.bg-main-second {
+  background-color: #FCA311;
+}
+
+.bg-main-second:hover {
+  background-color: #fcb43d;
+}
+
+.btn-main {
+  background-color: #14213D;
+  color:#FCA311;
+}
+
+.btn-main:hover {
+  background-color: #142163;
+  color:#FCA311;
+}
+
+.btn-main-second {
+  background-color: #FCA311;
+  color:#14213D;
+}
+
+.btn-main-second:hover {
+  background-color: #fcb43d;
 }
 
 

@@ -1,8 +1,10 @@
 @model ReservationViewModel
 
 
-<input type="image" src="free_space.png" alt="empty" class="btTxt submit mx-auto d-block free-space-img" data-toggle="modal" data-target="#id_@Model.Space"/>
+@*==== Empty Space img (icon) ====*@
+<input type="image" src="free_space.png" alt="empty" class="my-5 submit mx-auto d-block free-space-img" data-toggle="modal" data-target="#id_@Model.Space"/>
 
+@*==== Reserving Space form ====*@
 <div class="modal fade" id="id_@Model.Space" tabindex="-1" role="dialog" aria-labelledby="id_@Model.Space" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         @if (User.Identity.IsAuthenticated)
@@ -15,10 +17,10 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="container color-bg">
+                    <div class="container bg-main">
                         <div class="row">
                             <div class="col pt-5">
-                                <h3 class="text-center color-text">Резервиране</h3>
+                                <h3 class="text-center text-main">Резервиране</h3>
                             </div>
                         </div>
                         <div class="row">
@@ -26,23 +28,23 @@
                             <div class="col p-5">
                                 <div class="row">
                                     <div class="col form-group">
-                                        <label class="text-center color-text">Място</label>
+                                        <label class="text-center text-main">Място</label>
                                         <input asp-for="Space" class="form-control" type="number" value="@Model.Space" readonly/>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col form-group">
-                                        <label class="text-center color-text">От</label>
+                                        <label class="text-center text-main">От</label>
                                         <input asp-for="From" class="form-control" type="date" min=@ViewData["minDate"] max=@ViewData["maxDate"] value=@ViewData["date"] data-toggle="tooltip" title="Максималният период за запазване е 1 седмица и не-повече от 1 месец напред във времето.">
                                     </div>
                                     <div class="col form-group">
-                                        <label class="text-center color-text">До</label>
+                                        <label class="text-center text-main">До</label>
                                         <input asp-for="To" class="form-control" type="date" min=@ViewData["minDate"] max=@ViewData["maxDate"] value=@ViewData["date"] data-toggle="tooltip" title="Максималният период за запазване е 1 седмица и не-повече от 1 месец напред във времето.">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col form-group">
-                                        <label class="text-center color-text">Прикачи график (pdf) до 2MB</label>
+                                        <label class="text-center text-main">Прикачи график (pdf) до 2MB</label>
                                         <div class="input-group">
                                             <div class="custom-file">
                                                 <label asp-for="Schedule" class="custom-file-label">Избери файл</label>
@@ -53,7 +55,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col form-group">
-                                        <label class="text-center color-text">Смяна (период)</label>
+                                        <label class="text-center text-main">Смяна (период)</label>
                                         <select asp-for="Shift" class="custom-select">
                                             <option value="0" selected>Избери смяна</option>
                                             <option value="1">1ва (08:00 - 14:00)</option>
@@ -68,7 +70,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" asp-controller="Home" asp-action="Reserve" class="btn btn-primary btn-lg btn-block">Резервирай!</button>
+                    <button type="submit" asp-controller="Home" asp-action="Reserve" class="btn btn-main btn-lg btn-block">Резервирай!</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Затвори</button>
                 </div>
             </form>
@@ -83,11 +85,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="container color-bg rounded">
+                    <div class="container bg-main rounded">
                         <div class="row">
                             <div class="col p-3">
-                                <p class="h5 text-center color-text p-5">Трябва да си влязъл в профила си за да запазваш нови места!</p>
-                                <a asp-controller="Auth" asp-action="Login" class="btn btn-lg btn-block btn-primary">Влизане в профила</a>
+                                <p class="h5 text-center text-main p-5">Трябва да си влязъл в профила си за да запазваш нови места!</p>
+                                <a asp-controller="Auth" asp-action="Login" class="btn btn-lg btn-block btn-main-second">Влизане в профила</a>
                             </div>
                         </div>
                     </div>
