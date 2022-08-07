@@ -15,10 +15,16 @@ namespace WebUI.Controllers
 {
     public class HomeController : Controller
     {
+        #region Fields
+        //=============================================================================================
         private readonly UserService _userService;
         private readonly ReservationService _reservationService;
         private readonly UserManager<IdentityUser> _userManager;
-
+        #endregion
+        
+        
+        
+        //=============================================================================================
         public HomeController(UserService userService, ReservationService reservationService, 
             UserManager<IdentityUser> userManager)
         {
@@ -26,7 +32,11 @@ namespace WebUI.Controllers
             _reservationService = reservationService;
             _userManager = userManager;
         }
+        
+        
 
+        #region Routes
+        //=============================================================================================
         /// <summary> The Action method you route everytime you go to the home page. </summary>
         public async Task<IActionResult> Index(IndexViewModel model)
         {
@@ -39,9 +49,9 @@ namespace WebUI.Controllers
             
             model.Shifts = new List<SelectListItem>
             {
-                new SelectListItem {Text = "1ва", Value = "1"},
-                new SelectListItem {Text = "2ра", Value = "2"},
-                new SelectListItem {Text = "Целодневна", Value = "3"}
+                new SelectListItem {Text = "1ва (08:00 - 14:00)", Value = "1"},
+                new SelectListItem {Text = "2ра (14:00 - 21:00)", Value = "2"},
+                new SelectListItem {Text = "Целодневна (09:30 - 18:30)", Value = "3"}
             };
             model.Shift = model.Shift == 0 ? 1 : model.Shift;
             model.Shifts[model.Shift-1].Selected = true;
@@ -65,7 +75,10 @@ namespace WebUI.Controllers
 
             return View(model);
         }
-
+        
+        
+        
+        //=============================================================================================
         /// <summary> Action method where you can submit a new reservation </summary>
         [HttpPost]
         public async Task<IActionResult> Reserve(ReservationViewModel model)
@@ -85,7 +98,7 @@ namespace WebUI.Controllers
             else if (ModelState.IsValid)
             {
                 var userId = new Guid(_userManager.GetUserId(User));
-                var reservation = model.Model(userId);
+                var reservation = model.ToReservation(userId);
                 var user = await _userService.GetAsync(userId);
                 var isScheduleRequired = (model.To - model.From).Days > 2;
                 
@@ -146,6 +159,9 @@ namespace WebUI.Controllers
             return RedirectToAction("Index", resultModel);
         }
 
+        
+        
+        //=============================================================================================
         /// <summary> Action method where you can submit a reservation to be deleted. </summary>
         [HttpPost]
         public async Task<IActionResult> RemoveReservation(Reservation model)
@@ -180,9 +196,14 @@ namespace WebUI.Controllers
             return RedirectToAction("Index", resultModel);
         }
 
+        
+        
+        //=============================================================================================
         public IActionResult Privacy()
         {
             return View();
         }
+        
+        #endregion
     }
 }

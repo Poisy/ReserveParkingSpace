@@ -6,8 +6,13 @@ using Microsoft.AspNetCore.Http;
 
 namespace WebUI.Utils
 {
+    /// <summary> Class for managing files in the project. </summary>
     public static class FileManager
     {
+        //=============================================================================================
+        /// <summary> Saves a file into the wwwroot/storage folder. </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="user">The user who is uploading it.</param>
         public static async Task SaveSchedule(IFormFile file, User user)
         {
             var date = DateTime.Now.ToString("dd-MM-yyyyTHH:mm");

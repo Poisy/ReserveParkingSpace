@@ -6,17 +6,26 @@ using Domain.Exceptions;
 
 namespace Domain.Seeds
 {
+    /// <summary> Class for generating <see cref="Reservation"/> objects. </summary>
     public class ReservationSeed
     {
+        //=============================================================================================
         private static Random Random { get; set; }
 
-        public static IEnumerable<Reservation> Generate(List<User> users)
+        
+        
+        //=============================================================================================
+        /// <summary> Generates <see cref="Reservation"/> objects. </summary>
+        /// <param name="users">Users who make the reservations.</param>
+        /// <param name="count">The number of generated reservations.</param>
+        /// <returns><see cref="IEnumerable{T}"/> which contains the reservations.</returns>
+        public static IEnumerable<Reservation> Generate(List<User> users, int count = 50)
         {
             Random = new Random();
             
             var reservations = new List<Reservation>();
 
-            while (reservations.Count < 50)
+            while (reservations.Count < count)
             {
                 var user = users[Random.Next(0, 50)];
                 int rndDay1 = Random.Next(0, 31);
@@ -60,14 +69,24 @@ namespace Domain.Seeds
         }
         
 
+        
+        //=============================================================================================
+        /// <summary> Checks if reservation is a valid and is not in conflict with other reservations. </summary>
         private static bool IsValid(IEnumerable<Reservation> res,  Reservation reservation)
         {
+            // Excludes outdated reservations
             var reservations = res.Where(res => res.To >= DateTime.Today);
 
+            // Reservation is invalid if the user already has made up a reservation
             if (reservations.Any(res => res.By == reservation.By)) return false;
             
+            // Reservations for the current space
             reservations = reservations.Where(res => res.Space == reservation.Space);
 
+            // Different shifts have different rules
+            // Shift 3: can't conflict with 1, 2 and 3
+            // Shift 2: can't conflict with 2 and 3
+            // Shift 1: can't conflict with 1 and 3
             switch (reservation.Shift)
             {
                 case 3:

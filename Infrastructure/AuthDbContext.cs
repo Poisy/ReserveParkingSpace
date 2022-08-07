@@ -8,13 +8,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure
 {
+    /// <summary> IdentityDbContext which communicates directly with the Identity database. </summary>
     public class AuthDbContext : IdentityDbContext
     {
+        //=============================================================================================
         public AuthDbContext(DbContextOptions<AuthDbContext> options) : base(options)
         {
             
         }
 
+        
+        //=============================================================================================
+        /// <summary> Seeds a IdentityUsers into the database. <br/>
+        /// Comment this method to avoid it if you desire.</summary>
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

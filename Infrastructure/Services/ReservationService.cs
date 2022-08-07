@@ -5,42 +5,49 @@ using System.Threading.Tasks;
 using Domain.Entities;
 using Domain.Exceptions;
 using Infrastructure.Repos;
-using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Services
 {
     public class ReservationService
     {
+        //=============================================================================================
         private readonly ReservationRepo _reservationRepo;
         
         
+        //=============================================================================================
         public ReservationService(ReservationRepo reservationRepo)
         {
             _reservationRepo = reservationRepo;
         }
         
+        
+        
+        //=============================================================================================
         /// <summary> Tries to add new reservation. </summary>
+        /// <param name="reservation">The new reservation.</param>
         /// <exception cref="Domain.Exceptions.UserAlreadyReservedException"> If the current user already have reservation. </exception>
         /// <exception cref="Domain.Exceptions.SpaceAlreadyTakenException"> If the space is already been taken by other user. </exception>
         public async Task TryAddAsync(Reservation reservation)
         {
-            // Gets only the current reservations and removes the outdated
+            // Excludes outdated reservations
             var reservations = _reservationRepo.GetAll().Where(res => res.To >= DateTime.Today);
                     
-            // Check if the user already have any reservation, if so he is unable to make a second one,
-            // only one reservation at time is possible
+            // Reservation is invalid if the user already has made up a reservation
             if (reservations.Any(res => res.By == reservation.By))
             {
                 throw new UserAlreadyReservedException();
             }
             
-            // Only get the reservations for that space
+            // Reservations for the current space
             reservations = reservations.Where(res => res.Space == reservation.Space);
 
+            // Different shifts have different rules
+            // Shift 3: can't conflict with 1, 2 and 3
+            // Shift 2: can't conflict with 2 and 3
+            // Shift 1: can't conflict with 1 and 3
             switch (reservation.Shift)
             {
                 case 3:
-                    // Check if the date range conflicts with other reservation
                     if (!reservations.All(res => (res.To < reservation.From) || (res.From > reservation.To)))
                     {
                         throw new SpaceAlreadyTakenException();
@@ -48,10 +55,8 @@ namespace Infrastructure.Services
 
                     break;
                 case 2:
-                    // Gets all reservations where shift is 2 or 3
                     reservations = reservations.Where(res => res.Shift != 1);
                         
-                    // Check if the date range conflicts with other reservation
                     if (!reservations.All(res => (res.To < reservation.From) || (res.From > reservation.To)))
                     {
                         throw new SpaceAlreadyTakenException();
@@ -59,10 +64,8 @@ namespace Infrastructure.Services
 
                     break;
                 case 1:
-                    // Gets all reservations where shift is 1 or 3
                     reservations = reservations.Where(res => res.Shift != 2);
                         
-                    // Check if the date range conflicts with other reservation
                     if (!reservations.All(res => (res.To < reservation.From) || (res.From > reservation.To)))
                     {
                         throw new SpaceAlreadyTakenException();
@@ -74,7 +77,11 @@ namespace Infrastructure.Services
             await _reservationRepo.AddAsync(reservation);
         }
 
-        /// <summary> Deletes already existing reservation. </summary>
+        
+        
+        //=============================================================================================
+        /// <summary> Deletes reservation if exists by id. </summary>
+        /// <param name="id">Id of the reservation.</param>
         public async Task DeleteAsync(Guid id)
         {
             var reservation = await _reservationRepo.GetAsync(id);
@@ -84,16 +91,10 @@ namespace Infrastructure.Services
                 await _reservationRepo.DeleteAsync(reservation);
             }
         }
-
-        /// <summary> Returns all reservations that were from the given user. </summary>
-        public IEnumerable<Reservation> GetReservationsByUser(Guid userId)
-        {
-            var reservations = _reservationRepo.GetAll()
-                .Where(reservation => reservation.By == userId);
-
-            return reservations;
-        }
         
+        
+        
+        //=============================================================================================
         /// <summary> Returns all reservations that were from the given date. </summary>
         public IEnumerable<Reservation> GetReservationsByDate(DateTime dateTime)
         {
@@ -110,24 +111,9 @@ namespace Infrastructure.Services
             return reservations;
         }
 
-        /// <summary> Returns all reservations that were from the given user and are reserved for now. </summary>
-        public async Task<Reservation> GetCurrentReservationByUserAsync(Guid userId)
-        {
-            var reservation = await _reservationRepo.GetAll()
-                .FirstOrDefaultAsync(reservation => reservation.By == userId && reservation.From < DateTime.Now && reservation.To > DateTime.Now);
-
-            return reservation;
-        }
-
-        /// <summary> Returns all reservations that were reserved for now. </summary>
-        public IEnumerable<Reservation> GetCurrentReservations()
-        {
-            var reservations = _reservationRepo.GetAll()
-                .Where(reservation => reservation.From < DateTime.Now && reservation.To > DateTime.Now);
-
-            return reservations;
-        }
-
+        
+        
+        //=============================================================================================
         public async Task<Reservation> GetReservationByUser(Guid userId)
         {
             return await _reservationRepo.GetByUserId(userId);

@@ -9,10 +9,16 @@ namespace WebUI.Controllers
 {
     public class AuthController : Controller
     {
+        #region Fields
+        //=============================================================================================
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserService _userService;
+        #endregion
+        
 
+        
+        //=============================================================================================
         public AuthController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, 
             UserService userService)
         {
@@ -20,19 +26,32 @@ namespace WebUI.Controllers
             _signInManager = signInManager;
             _userService = userService;
         }
-        
+
+
+
+        #region Methods
+        //=============================================================================================
+        /// <summary> Does nothing but redirects back to the view. </summary>
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
+        
+        
+        //=============================================================================================
+        /// <summary> Does nothing but redirects back to the view. </summary>
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
         
+        
+        
+        //=============================================================================================
+        /// <summary> Registers new users. </summary>
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
@@ -67,6 +86,10 @@ namespace WebUI.Controllers
             return View();
         }
 
+        
+        
+        //=============================================================================================
+        /// <summary> Logs into the account of a user. </summary>
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
@@ -86,6 +109,10 @@ namespace WebUI.Controllers
             return View();
         }
 
+        
+        
+        //=============================================================================================
+        /// <summary> Logs out from the account of the current user. </summary>
         [HttpGet]
         public async Task<IActionResult> Logout()
         {
@@ -93,5 +120,6 @@ namespace WebUI.Controllers
             
             return RedirectToAction("Index", "Home");
         }
+        #endregion
     }
 }
