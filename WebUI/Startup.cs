@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebUI.Middleware;
 
 namespace WebUI
 {
@@ -70,6 +71,8 @@ namespace WebUI
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseMiddleware<UserMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

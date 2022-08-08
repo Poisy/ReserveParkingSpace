@@ -42,8 +42,8 @@ namespace WebUI.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                model.User ??= await _userService.GetAsync(new Guid(_userManager.GetUserId(User)));
-                model.UserReservation = await _reservationService.GetReservationByUser(model.User.Id);
+                model.User ??= HttpContext.Items["user"] as User;
+                model.UserReservation = await _reservationService.GetReservationByUser(model.User?.Id ?? Guid.Empty);
             }
             
             
@@ -97,9 +97,8 @@ namespace WebUI.Controllers
             }
             else if (ModelState.IsValid)
             {
-                var userId = new Guid(_userManager.GetUserId(User));
-                var reservation = model.ToReservation(userId);
-                var user = await _userService.GetAsync(userId);
+                resultModel.User = HttpContext.Items["user"] as User;
+                var reservation = model.ToReservation(resultModel.User.Id);
                 var isScheduleRequired = (model.To - model.From).Days > 2;
                 
                 if (isScheduleRequired)
@@ -130,7 +129,7 @@ namespace WebUI.Controllers
 
                     if (isScheduleRequired)
                     {
-                        await FileManager.SaveSchedule(model.Schedule, user);   
+                        await FileManager.SaveSchedule(model.Schedule, resultModel.User);   
                     }
                 }
                 catch (UserAlreadyReservedException)
@@ -172,9 +171,9 @@ namespace WebUI.Controllers
             {
                 resultModel.Date = model.From;
                 resultModel.Shift = model.Shift;
-                model.User ??= _userService.GetAsync(new Guid(_userManager.GetUserId(User))).Result;
+                resultModel.User = HttpContext.Items["user"] as User;
 
-                if (model.By == model.User.Id)
+                if (model.By == resultModel.User.Id)
                 { 
                     await _reservationService.DeleteAsync(model.Id);
                     
